@@ -1,0 +1,934 @@
+﻿$version 10.00
+
+// This is the root component of the entire GUI application.
+$rect <50,140,250,180>
+$output false
+class Application : Core::Root
+{
+  $rect <500,50,700,90>
+  inherited method Init()
+  {
+    SwitchToDialog(new Application::Main, null, null, null, null, null, null, null, null, null, false ); 
+  }
+
+  $rect <500,0,700,40>
+  inherited property Bounds = <0,0,480,272>;
+}
+
+$rect <1000,70,1240,110>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonMinus
+{
+  preset FaceActive = Poze::minus;
+  preset FaceFocused = Poze::minus;
+  preset FaceDisabled = Poze::minus;
+  preset FaceDefault = Poze::minus;
+}
+
+$rect <1000,110,1240,150>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonPlus
+{
+  preset FaceActive = Poze::plus;
+  preset FaceFocused = Poze::plus;
+  preset FaceDisabled = Poze::plus;
+  preset FaceDefault = Poze::plus;
+}
+
+$rect <1000,150,1240,190>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonMeniu
+{
+  preset FaceActive = Poze::meniu;
+  preset FaceFocused = Poze::meniu;
+  preset FaceDisabled = Poze::meniu;
+  preset FaceDefault = Poze::meniu;
+}
+
+$rect <1000,190,1240,230>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonTimp
+{
+  preset FaceActive = Poze::timp;
+  preset FaceFocused = Poze::timp;
+  preset FaceDisabled = Poze::timp;
+  preset FaceDefault = Poze::timp;
+}
+
+$rect <1000,230,1240,270>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonTemp
+{
+  preset FaceActive = Poze::temp;
+  preset FaceFocused = Poze::temp;
+  preset FaceDisabled = Poze::temp;
+  preset FaceDefault = Poze::temp;
+}
+
+$rect <1000,270,1240,310>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonPlay
+{
+  preset FaceActive = Poze::play;
+  preset FaceFocused = Poze::play;
+  preset FaceDisabled = Poze::play;
+  preset FaceDefault = Poze::play;
+}
+
+$rect <1000,310,1240,350>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonStop
+{
+  preset FaceActive = Poze::stop;
+  preset FaceFocused = Poze::stop;
+  preset FaceDisabled = Poze::stop;
+  preset FaceDefault = Poze::stop;
+}
+
+$rect <1000,350,1240,390>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonPower
+{
+  preset FaceActive = Poze::power;
+  preset FaceFocused = Poze::power;
+  preset FaceDisabled = Poze::power;
+  preset FaceDefault = Poze::power;
+}
+
+$rect <350,140,550,180>
+$output false
+class Clock : Core::Group
+{
+  $rect <10,230,210,270>
+  inherited property Bounds = <123,18,358,136>;
+
+  $rect <10,390,210,430>
+  inherited method UpdateLayout()
+  {
+    // Always invoke the inherited method.
+    super( aSize );
+
+    /*
+
+      HINT:
+
+      This method exists for sophisticated layout calculation. Please note, that in 
+      most cases it is completely sufficient to use the views property 'Layout' to
+      determine how the view should behave when the component is resized.
+
+    */
+
+    /*
+
+      TO DO:
+
+      Put here the code to calculate new position and size of enclosed views. The
+      current (new) size of the component itself is passed in the parameter aSize.
+      For example:
+
+        SomeView.Bounds = rect( 10, 10, aSize.x - 20, aSize.y - 20 );
+
+    */
+  }
+
+  $rect <10,350,210,390>
+  inherited method UpdateViewState()
+  {
+    // Always invoke the inherited method.
+    super( aState );
+
+    /*
+
+      HINT 1:
+
+      This method is invoked automatically when the state set of the component has
+      been changed. The new state set can be found in the parameter aState.
+      Following are the important states:
+
+        Enabled   --> The component can react to user inputs.
+
+        Selected  --> The component is selected in context of its owner.
+
+        Focused   --> The component is selected in context of its owner and 
+                      the owner can react to keyboard events. In this manner the
+                      component is also able to react to keyboard events.
+
+        Modal     --> The component is modal. All events are redirected to this
+                      component.
+
+      To determine whether a state is currently active or not you have to test
+      the aState parameter. For example to test the 'Selected' state:
+
+        if ( aState.contains( Core::ViewState[ Selected ]))
+        {
+          ... yes, this component is currently selected.
+        }
+
+    */
+
+    /*
+
+      HINT 2:
+
+      Alternatively you can request this method invocation by executing explicitly
+      following code:
+
+
+        InvalidateViewState();
+
+    */
+      
+    /*
+
+      TO DO 1:
+
+      Put here the code to ensure that the visual aspect of the component does
+      reflect its current state. For example, depending on its 'Enabled' state
+      a component may appear with full colors or pale if it is disabled:
+
+        if ( aState.contains( Core::ViewState[ Enabled ]))
+        {
+          SomeBackgroundView.Opacity = 255;
+          SomeTextView.Color         = #000000FF;
+        }
+        else
+        {
+          SomeBackgroundView.Opacity = 128;
+          SomeTextView.Color         = #00000080;
+        }
+
+
+      TO DO 2:
+
+      You can evaluate here also the state of any other member in your component.
+      For example in a push-button component, the button should appear highlighted
+      as long as the user holds the finger within a touch area of the button:
+
+        if ( SomeTouchHandler.Down && SomeTouchHandler.Inside )
+          HighlightedBackground.Visible = true;
+        else
+          HighlightedBackground.Visible = false;
+
+      The touch handler itself only requests the update method to be called. Use
+      for this purpose 'InvalidateViewState()' method.
+
+
+      TO DO 3:
+
+      You can calculate here also the position/size of views accordingly to the
+      state of any other member in your component. For example in a slider you
+      can calculate the position of the slider knob from some properties like
+      'SliderValue' and 'SliderRange':
+
+        SliderKnob.Bounds.origin.x = ( SliderValue * Bounds.w ) / SliderRange;
+
+      Changing the 'SliderValue' or 'SliderRange' property should only request
+      the update method to be called. Use for this purpose 'InvalidateViewState()'
+      method.
+
+    */
+  }
+
+  // To do:
+  // 
+  // - Adjust the visible size of your component (the thick blue border).
+  // 
+  // - The simplest way to compose the appearance of the component is to use the \
+  // 'Views' and 'Widget Sets' from the Gallery.
+  // 
+  // - To react to touch or keyboard events use the templates from the Gallery folder \
+  // 'Event Handlers'.
+  // 
+  // - To perform transitions (animations) use the templates from the Gallery folder \
+  // 'Effects'.
+  // 
+  // - To implement the interface of the component use the 'Property' template from \
+  // the Gallery folder 'Chora'.
+  // 
+  // - To store values use the 'Variable' and 'Array' templates available in the \
+  // Gallery folder 'Chora'.
+  // 
+  // - To implement behavior use the 'Method' and 'Slot Method' templates available \
+  // in the Gallery folder 'Chora'.
+  // 
+  // - In the method 'UpdateViewState()' you can put code to update the state of \
+  // views enclosed in your component.
+  // 
+  // - In the method 'UpdateLayout()' you can put code to perform sophisticated layout \
+  // calculation for enclosed views.
+  note legend Note1
+  {
+    attr Bounds = <220,230,1000,550>;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle Background
+  {
+    preset Bounds = <0,0,235,118>;
+    preset Color = #555555FF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Minutes
+  {
+    preset Bounds = <0,0,117,118>;
+    preset Alignment = Views::TextAlignment[AlignHorzRight, AlignVertCenter];
+    preset String = "00";
+    preset Font = Application::FontClock;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Seconds
+  {
+    preset Bounds = <130,0,235,118>;
+    preset Alignment = Views::TextAlignment[AlignHorzLeft, AlignVertCenter];
+    preset String = "00";
+    preset Font = Application::FontClock;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Text
+  {
+    preset Bounds = <117,0,130,118>;
+    preset String = ":";
+    preset Font = Application::FontClockPoints;
+  }
+}
+
+// Push Button Config
+note group Note
+{
+  attr Bounds = <960,20,1270,470>;
+}
+
+// GUI Components
+note group Note1
+{
+  attr Bounds = <40,100,570,360>;
+}
+
+// Configs
+note group Note2
+{
+  attr Bounds = <640,20,930,400>;
+}
+
+$rect <690,70,890,110>
+$output false
+resource Resources::Font FontClock
+{
+  attr fontname FontName = Roboto;
+  attr fontheight Height = 60;
+  attr fontheightmode HeightMode = Popular;
+  attr fontquality Quality = High;
+  attr fontranges Ranges = 0x20-0xFF;
+  attr fontaspectratio AspectRatio = 1.0;
+  attr fontbold Bold = false;
+  attr fontitalic Italic = false;
+  attr fontkerning Kerning = true;
+  attr fontrowdistance RowDistance;
+}
+
+$rect <690,120,890,160>
+$output false
+resource Resources::Font FontClockPoints
+{
+  attr fontname FontName = Roboto;
+  attr fontheight Height = 35;
+  attr fontheightmode HeightMode = Popular;
+  attr fontquality Quality = High;
+  attr fontranges Ranges = 0x20-0xFF;
+  attr fontaspectratio AspectRatio = 1.0;
+  attr fontbold Bold = false;
+  attr fontitalic Italic = false;
+  attr fontkerning Kerning = true;
+  attr fontrowdistance RowDistance;
+}
+
+$rect <350,200,550,240>
+$output false
+class Temperature : Core::Group
+{
+  $rect <10,300,210,340>
+  inherited property Bounds = <0,0,480,272>;
+
+  $rect <10,390,210,430>
+  inherited method UpdateLayout()
+  {
+    // Always invoke the inherited method.
+    super( aSize );
+
+    /*
+
+      HINT:
+
+      This method exists for sophisticated layout calculation. Please note, that in 
+      most cases it is completely sufficient to use the views property 'Layout' to
+      determine how the view should behave when the component is resized.
+
+    */
+
+    /*
+
+      TO DO:
+
+      Put here the code to calculate new position and size of enclosed views. The
+      current (new) size of the component itself is passed in the parameter aSize.
+      For example:
+
+        SomeView.Bounds = rect( 10, 10, aSize.x - 20, aSize.y - 20 );
+
+    */
+  }
+
+  $rect <10,350,210,390>
+  inherited method UpdateViewState()
+  {
+    // Always invoke the inherited method.
+    super( aState );
+
+    /*
+
+      HINT 1:
+
+      This method is invoked automatically when the state set of the component has
+      been changed. The new state set can be found in the parameter aState.
+      Following are the important states:
+
+        Enabled   --> The component can react to user inputs.
+
+        Selected  --> The component is selected in context of its owner.
+
+        Focused   --> The component is selected in context of its owner and 
+                      the owner can react to keyboard events. In this manner the
+                      component is also able to react to keyboard events.
+
+        Modal     --> The component is modal. All events are redirected to this
+                      component.
+
+      To determine whether a state is currently active or not you have to test
+      the aState parameter. For example to test the 'Selected' state:
+
+        if ( aState.contains( Core::ViewState[ Selected ]))
+        {
+          ... yes, this component is currently selected.
+        }
+
+    */
+
+    /*
+
+      HINT 2:
+
+      Alternatively you can request this method invocation by executing explicitly
+      following code:
+
+
+        InvalidateViewState();
+
+    */
+      
+    /*
+
+      TO DO 1:
+
+      Put here the code to ensure that the visual aspect of the component does
+      reflect its current state. For example, depending on its 'Enabled' state
+      a component may appear with full colors or pale if it is disabled:
+
+        if ( aState.contains( Core::ViewState[ Enabled ]))
+        {
+          SomeBackgroundView.Opacity = 255;
+          SomeTextView.Color         = #000000FF;
+        }
+        else
+        {
+          SomeBackgroundView.Opacity = 128;
+          SomeTextView.Color         = #00000080;
+        }
+
+
+      TO DO 2:
+
+      You can evaluate here also the state of any other member in your component.
+      For example in a push-button component, the button should appear highlighted
+      as long as the user holds the finger within a touch area of the button:
+
+        if ( SomeTouchHandler.Down && SomeTouchHandler.Inside )
+          HighlightedBackground.Visible = true;
+        else
+          HighlightedBackground.Visible = false;
+
+      The touch handler itself only requests the update method to be called. Use
+      for this purpose 'InvalidateViewState()' method.
+
+
+      TO DO 3:
+
+      You can calculate here also the position/size of views accordingly to the
+      state of any other member in your component. For example in a slider you
+      can calculate the position of the slider knob from some properties like
+      'SliderValue' and 'SliderRange':
+
+        SliderKnob.Bounds.origin.x = ( SliderValue * Bounds.w ) / SliderRange;
+
+      Changing the 'SliderValue' or 'SliderRange' property should only request
+      the update method to be called. Use for this purpose 'InvalidateViewState()'
+      method.
+
+    */
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle Background
+  {
+    preset Bounds = <0,0,480,272>;
+    preset Color = #323232FF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Bevel Bevel
+  {
+    preset Bounds = <123,18,358,136>;
+    preset Width = 4;
+    preset ColorL = #FF0800FF;
+    preset ColorR = #FF1200FF;
+    preset ColorB = #FF1F0CFF;
+    preset ColorT = #FF0F00FF;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Power
+  {
+    preset Bounds = <53,18,103,68>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPower;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Stop
+  {
+    preset Bounds = <61,86,111,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonStop;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Temp
+  {
+    preset Bounds = <120,157,170,207>;
+    preset OnPress = OpenMain;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonTemp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Timp
+  {
+    preset Bounds = <215,157,265,207>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonTimp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Meniu
+  {
+    preset Bounds = <310,157,360,207>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonMeniu;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Minus
+  {
+    preset Bounds = <380,86,430,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonMinus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Plus
+  {
+    preset Bounds = <380,18,430,68>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPlus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Play
+  {
+    preset Bounds = <11,86,61,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPlay;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image Image
+  {
+    preset Bounds = <255,28,335,108>;
+    preset Bitmap = Poze::celsius;
+  }
+
+  $rect <540,70,740,110>
+  slot OpenMain
+  {
+    Owner.SwitchToDialog(new Application::Main, null, null, null, null, null, null, null, null, null, false );
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle Rectangle
+  {
+    preset Bounds = <123,18,358,136>;
+    preset Color = #555555FF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image Image1
+  {
+    preset Bounds = <255,37,335,117>;
+    preset Bitmap = Poze::celsius;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Text1
+  {
+    preset Bounds = <123,18,240,136>;
+    preset String = "Text";
+    preset Font = Application::FontClockPoints;
+  }
+}
+
+$rect <50,200,250,240>
+$output false
+class Main : Core::Group
+{
+  $rect <100,300,300,340>
+  inherited property Bounds = <0,0,480,272>;
+
+  $rect <20,20,160,60>
+  object Views::Rectangle Background
+  {
+    preset Bounds = <0,0,480,272>;
+    preset Color = #323232FF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Bevel Bevel
+  {
+    preset Bounds = <123,18,358,136>;
+    preset Width = 4;
+    preset ColorL = #FF0800FF;
+    preset ColorR = #FF1200FF;
+    preset ColorB = #FF1F0CFF;
+    preset ColorT = #FF0F00FF;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Power
+  {
+    preset Bounds = <53,18,103,68>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPower;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Stop
+  {
+    preset Bounds = <61,86,111,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonStop;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Temp
+  {
+    preset Bounds = <120,157,170,207>;
+    preset OnPress = OpenTemperature;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonTemp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Timp
+  {
+    preset Bounds = <215,157,265,207>;
+    preset OnPress = OpenTime;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonTimp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Meniu
+  {
+    preset Bounds = <310,157,360,207>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonMeniu;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Minus
+  {
+    preset Bounds = <380,86,430,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonMinus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Plus
+  {
+    preset Bounds = <380,18,430,68>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPlus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Play
+  {
+    preset Bounds = <11,86,61,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPlay;
+  }
+
+  $rect <20,20,160,60>
+  object Application::Clock Clock
+  {
+    preset Bounds = <123,18,358,136>;
+  }
+
+  $rect <540,10,740,50>
+  slot OpenTemperature
+  {
+
+    Owner.SwitchToDialog(new Application::Temperature, null, null, null, null, null, null, null, null, null, false );
+
+
+  }
+
+  $rect <540,70,740,110>
+  slot OpenTime
+  {
+    Owner.SwitchToDialog(new Application::Time, null, null, null, null, null, null, null, null, null, false );
+  }
+}
+
+$rect <350,260,550,300>
+$output false
+class Time : Core::Group
+{
+  $rect <10,300,210,340>
+  inherited property Bounds = <0,0,480,272>;
+
+  $rect <10,390,210,430>
+  inherited method UpdateLayout()
+  {
+    // Always invoke the inherited method.
+    super( aSize );
+
+    /*
+
+      HINT:
+
+      This method exists for sophisticated layout calculation. Please note, that in 
+      most cases it is completely sufficient to use the views property 'Layout' to
+      determine how the view should behave when the component is resized.
+
+    */
+
+    /*
+
+      TO DO:
+
+      Put here the code to calculate new position and size of enclosed views. The
+      current (new) size of the component itself is passed in the parameter aSize.
+      For example:
+
+        SomeView.Bounds = rect( 10, 10, aSize.x - 20, aSize.y - 20 );
+
+    */
+  }
+
+  $rect <10,350,210,390>
+  inherited method UpdateViewState()
+  {
+    // Always invoke the inherited method.
+    super( aState );
+
+    /*
+
+      HINT 1:
+
+      This method is invoked automatically when the state set of the component has
+      been changed. The new state set can be found in the parameter aState.
+      Following are the important states:
+
+        Enabled   --> The component can react to user inputs.
+
+        Selected  --> The component is selected in context of its owner.
+
+        Focused   --> The component is selected in context of its owner and 
+                      the owner can react to keyboard events. In this manner the
+                      component is also able to react to keyboard events.
+
+        Modal     --> The component is modal. All events are redirected to this
+                      component.
+
+      To determine whether a state is currently active or not you have to test
+      the aState parameter. For example to test the 'Selected' state:
+
+        if ( aState.contains( Core::ViewState[ Selected ]))
+        {
+          ... yes, this component is currently selected.
+        }
+
+    */
+
+    /*
+
+      HINT 2:
+
+      Alternatively you can request this method invocation by executing explicitly
+      following code:
+
+
+        InvalidateViewState();
+
+    */
+      
+    /*
+
+      TO DO 1:
+
+      Put here the code to ensure that the visual aspect of the component does
+      reflect its current state. For example, depending on its 'Enabled' state
+      a component may appear with full colors or pale if it is disabled:
+
+        if ( aState.contains( Core::ViewState[ Enabled ]))
+        {
+          SomeBackgroundView.Opacity = 255;
+          SomeTextView.Color         = #000000FF;
+        }
+        else
+        {
+          SomeBackgroundView.Opacity = 128;
+          SomeTextView.Color         = #00000080;
+        }
+
+
+      TO DO 2:
+
+      You can evaluate here also the state of any other member in your component.
+      For example in a push-button component, the button should appear highlighted
+      as long as the user holds the finger within a touch area of the button:
+
+        if ( SomeTouchHandler.Down && SomeTouchHandler.Inside )
+          HighlightedBackground.Visible = true;
+        else
+          HighlightedBackground.Visible = false;
+
+      The touch handler itself only requests the update method to be called. Use
+      for this purpose 'InvalidateViewState()' method.
+
+
+      TO DO 3:
+
+      You can calculate here also the position/size of views accordingly to the
+      state of any other member in your component. For example in a slider you
+      can calculate the position of the slider knob from some properties like
+      'SliderValue' and 'SliderRange':
+
+        SliderKnob.Bounds.origin.x = ( SliderValue * Bounds.w ) / SliderRange;
+
+      Changing the 'SliderValue' or 'SliderRange' property should only request
+      the update method to be called. Use for this purpose 'InvalidateViewState()'
+      method.
+
+    */
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle Background
+  {
+    preset Bounds = <0,0,480,272>;
+    preset Color = #323232FF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Bevel Bevel
+  {
+    preset Bounds = <123,18,358,136>;
+    preset Width = 4;
+    preset ColorL = #FF0800FF;
+    preset ColorR = #FF1200FF;
+    preset ColorB = #FF1F0CFF;
+    preset ColorT = #FF0F00FF;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Power
+  {
+    preset Bounds = <53,18,103,68>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPower;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Stop
+  {
+    preset Bounds = <61,86,111,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonStop;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Temp
+  {
+    preset Bounds = <120,157,170,207>;
+    preset OnPress;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonTemp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Timp
+  {
+    preset Bounds = <215,157,265,207>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonTimp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Meniu
+  {
+    preset Bounds = <310,157,360,207>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonMeniu;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Minus
+  {
+    preset Bounds = <380,86,430,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonMinus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Plus
+  {
+    preset Bounds = <380,18,430,68>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPlus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Play
+  {
+    preset Bounds = <11,86,61,136>;
+    preset Label = "Caption";
+    preset Appearance = Application::PushButtonPlay;
+  }
+}
+
+$rect <1000,390,1240,430>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonHome;

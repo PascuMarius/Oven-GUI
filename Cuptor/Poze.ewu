@@ -1,0 +1,295 @@
+﻿$version 10.00
+
+$rect <70,400,270,440>
+$output false
+resource Resources::Bitmap minus
+{
+  attr bitmapfile FileName = .\Poze\minus.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,200,270,240>
+$output false
+resource Resources::Bitmap plus
+{
+  attr bitmapfile FileName = .\Poze\plus.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,440,270,480>
+$output false
+resource Resources::Bitmap meniu
+{
+  attr bitmapfile FileName = .\Poze\meniu.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,160,270,200>
+$output false
+resource Resources::Bitmap play
+{
+  attr bitmapfile FileName = .\Poze\play.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,120,270,160>
+$output false
+resource Resources::Bitmap power
+{
+  attr bitmapfile FileName = .\Poze\power.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,280,270,320>
+$output false
+resource Resources::Bitmap stop
+{
+  attr bitmapfile FileName = .\Poze\stop.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,360,270,400>
+$output false
+resource Resources::Bitmap temp
+{
+  attr bitmapfile FileName = .\Poze\temp.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,320,270,360>
+$output false
+resource Resources::Bitmap timp
+{
+  attr bitmapfile FileName = .\Poze\timp.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,240,270,280>
+$output false
+resource Resources::Bitmap celsius
+{
+  attr bitmapfile FileName = .\Poze\celsius.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+// Main Bitmap
+note group Note
+{
+  attr Bounds = <20,0,320,499>;
+}
+
+// Meniu Bitmaps
+note group Note1
+{
+  attr Bounds = <330,0,630,300>;
+}
+
+// Cooking
+note group Note2
+{
+  attr Bounds = <640,0,940,410>;
+}
+
+$rect <70,40,270,80>
+$output false
+resource Resources::Bitmap Background
+{
+  attr bitmapfile FileName = .\Poze\Background.jpg;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <70,80,270,120>
+$output false
+resource Resources::Bitmap Display
+{
+  attr bitmapfile FileName = .\Poze\Display.jpg;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <380,40,580,80>
+$output false
+resource Resources::Bitmap Meniu1
+{
+  attr bitmapfile FileName = .\Poze\Meniu1.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <380,80,580,120>
+$output false
+resource Resources::Bitmap Meniu2
+{
+  attr bitmapfile FileName = .\Poze\Meniu2.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <380,120,580,160>
+$output false
+resource Resources::Bitmap Meniu3
+{
+  attr bitmapfile FileName = .\Poze\Meniu3.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <380,160,580,200>
+$output false
+resource Resources::Bitmap Meniu4
+{
+  attr bitmapfile FileName = .\Poze\Meniu4.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <380,200,580,240>
+$output false
+resource Resources::Bitmap Meniu5
+{
+  attr bitmapfile FileName = .\Poze\Meniu5.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <380,240,580,280>
+$output false
+resource Resources::Bitmap Meniu6
+{
+  attr bitmapfile FileName = .\Poze\Meniu6.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <700,40,900,80>
+$output false
+resource Resources::Bitmap FireGif
+{
+  attr bitmapfile FileName = .\Poze\gif.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize = <80,60>;
+  attr framedelay FrameDelay = 500;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <700,80,900,120>
+$output false
+resource Resources::Bitmap CircleGif
+{
+  attr bitmapfile FileName = .\Poze\CircleGif.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize = <64,64>;
+  attr framedelay FrameDelay = 700;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <700,120,900,160>
+$output false
+resource Resources::Bitmap timer
+{
+  attr bitmapfile FileName = .\Poze\timer.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <700,160,900,200>
+$output false
+resource Resources::Bitmap clock
+{
+  attr bitmapfile FileName = .\Poze\clock.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <700,200,900,240>
+$output false
+resource Resources::Bitmap termometru
+{
+  attr bitmapfile FileName = .\Poze\termometru.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}
+
+$rect <700,240,900,280>
+$output false
+resource Resources::Bitmap playCook
+{
+  attr bitmapfile FileName = .\Poze\playCook.png;
+  attr bitmapdithering Dithering = Auto;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Native;
+  attr bitmapmode Mode = Default;
+}

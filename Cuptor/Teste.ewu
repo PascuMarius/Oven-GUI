@@ -1,0 +1,488 @@
+﻿$version 10.00
+
+$rect <300,70,502,110>
+$variant Win32Simulation
+vclass CuptorTemperature : Cuptor::CuptorTemperature
+{
+  $rect <780,30,980,70>
+  inherited property Bounds = <0,0,772,524>;
+
+  $rect <20,20,160,60>
+  inherited object Background
+  {
+    preset Bounds = <44,166,524,438>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Power
+  {
+    preset Bounds = <80,209,130,259>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Stop
+  {
+    preset Bounds = <105,277,155,327>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Temp
+  {
+    preset Bounds = <155,360,205,410>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Time
+  {
+    preset Bounds = <270,360,320,410>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Menu
+  {
+    preset Bounds = <385,360,435,410>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Minus
+  {
+    preset Bounds = <449,277,499,327>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Plus
+  {
+    preset Bounds = <449,209,499,259>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Play
+  {
+    preset Bounds = <55,277,105,327>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Display
+  {
+    preset Bounds = <155,184,435,344>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object DisplayBorder
+  {
+    preset Bounds = <155,184,435,344>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTemp
+  {
+    preset Point4 = <155,360>;
+    preset Point3 = <205,360>;
+    preset Point2 = <205,410>;
+    preset Point1 = <155,410>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTime
+  {
+    preset Point4 = <270,360>;
+    preset Point3 = <320,360>;
+    preset Point2 = <320,410>;
+    preset Point1 = <270,410>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMenu
+  {
+    preset Point4 = <385,360>;
+    preset Point3 = <435,360>;
+    preset Point2 = <435,410>;
+    preset Point1 = <385,410>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchStop
+  {
+    preset Point4 = <105,277>;
+    preset Point3 = <155,277>;
+    preset Point2 = <155,327>;
+    preset Point1 = <105,327>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlay
+  {
+    preset Point4 = <55,277>;
+    preset Point3 = <105,277>;
+    preset Point2 = <105,327>;
+    preset Point1 = <55,327>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPower
+  {
+    preset Point4 = <80,209>;
+    preset Point3 = <130,209>;
+    preset Point2 = <130,259>;
+    preset Point1 = <80,259>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMinus
+  {
+    preset Point4 = <449,277>;
+    preset Point3 = <499,277>;
+    preset Point2 = <499,327>;
+    preset Point1 = <449,327>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlus
+  {
+    preset Point4 = <449,209>;
+    preset Point3 = <499,209>;
+    preset Point2 = <499,259>;
+    preset Point1 = <449,259>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Celsius
+  {
+    preset Bounds = <295,184,433,344>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TempValue
+  {
+    preset Bounds = <155,184,295,344>;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Incrementare
+  {
+    preset Bounds = <549,166,699,216>;
+    preset OnPress = Slot;
+    preset Label = "Incrementare";
+    preset Appearance = WidgetSet::PushButton_Medium;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Decrementare
+  {
+    preset Bounds = <549,277,699,327>;
+    preset OnPress = Slot1;
+    preset Label = "Decrementare";
+    preset Appearance = WidgetSet::PushButton_Medium;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::ValueDisplay Verificare
+  {
+    preset Bounds = <549,369,749,401>;
+    preset Opacity = 255;
+    preset Unit = "0C";
+    preset Precision = 1;
+    preset Appearance = WidgetSet::ValueDisplay_Large;
+  }
+
+  $rect <780,80,980,120>
+  slot Slot
+  {
+    if(Incrementare.OnPress)
+    {
+       Cuptor::Globals.Temperature++;
+       Verificare.CurrentValue++; 
+    }
+    if(Incrementare.OnPress && Cuptor::Globals.Temperature > 250)
+    {
+       Cuptor::Globals.Temperature = 250;
+       Verificare.CurrentValue=250;
+    }
+
+    TempValue.String = Cuptor::Globals.Temperature; 
+
+
+  }
+
+  $rect <780,130,980,170>
+  slot Slot1
+  {
+    if(Minus.OnPress)
+    {
+       Cuptor::Globals.Temperature--;
+       Verificare.CurrentValue--; 
+    }
+
+    if(Minus.OnPress && Cuptor::Globals.Temperature < 0)
+    {
+       Cuptor::Globals.Temperature = 0;
+       Verificare.CurrentValue=0;
+    }
+
+    TempValue.String = Cuptor::Globals.Temperature;
+  }
+}
+
+$rect <90,70,290,110>
+$variant Win32Simulation
+vclass Application : Cuptor::Application
+{
+  $rect <820,60,1020,100>
+  inherited property Bounds = <0,0,768,460>;
+}
+
+$rect <90,120,590,160>
+$variant Win32Simulation
+vclass CuptorBase : Cuptor::CuptorBase
+{
+  $rect <210,228,410,268>
+  inherited property Bounds = <0,0,800,530>;
+
+  $rect <20,20,160,60>
+  inherited object Background
+  {
+    preset Bounds = <190,208,670,480>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Power
+  {
+    preset Bounds = <226,251,276,301>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Stop
+  {
+    preset Bounds = <251,319,301,369>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Temp
+  {
+    preset Bounds = <301,402,351,452>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Time
+  {
+    preset Bounds = <416,402,466,452>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Menu
+  {
+    preset Bounds = <531,402,581,452>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Minus
+  {
+    preset Bounds = <595,319,645,369>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Plus
+  {
+    preset Bounds = <595,251,645,301>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Play
+  {
+    preset Bounds = <201,319,251,369>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Display
+  {
+    preset Bounds = <301,226,581,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object DisplayBorder
+  {
+    preset Bounds = <301,226,581,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTemp
+  {
+    preset Point4 = <301,402>;
+    preset Point3 = <351,402>;
+    preset Point2 = <351,452>;
+    preset Point1 = <301,452>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTime
+  {
+    preset Point4 = <416,402>;
+    preset Point3 = <466,402>;
+    preset Point2 = <466,452>;
+    preset Point1 = <416,452>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMenu
+  {
+    preset Point4 = <531,402>;
+    preset Point3 = <581,402>;
+    preset Point2 = <581,452>;
+    preset Point1 = <531,452>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchStop
+  {
+    preset Point4 = <251,319>;
+    preset Point3 = <301,319>;
+    preset Point2 = <301,369>;
+    preset Point1 = <251,369>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlay
+  {
+    preset Point4 = <201,319>;
+    preset Point3 = <251,319>;
+    preset Point2 = <251,369>;
+    preset Point1 = <201,369>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPower
+  {
+    preset Point4 = <226,251>;
+    preset Point3 = <276,251>;
+    preset Point2 = <276,301>;
+    preset Point1 = <226,301>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMinus
+  {
+    preset Point4 = <595,319>;
+    preset Point3 = <645,319>;
+    preset Point2 = <645,369>;
+    preset Point1 = <595,369>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlus
+  {
+    preset Point4 = <595,251>;
+    preset Point3 = <645,251>;
+    preset Point2 = <645,301>;
+    preset Point1 = <595,301>;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Pornire
+  {
+    preset Bounds = <190,66,340,116>;
+    preset OnPress = Slot;
+    preset Label = "Pornire";
+    preset Appearance = WidgetSet::PushButton_Medium;
+  }
+
+  $rect <840,70,1040,110>
+  slot Slot
+  {
+    trace "onPower";
+    if( Cuptor::Globals.IsOn ) {
+      Owner.SwitchToDialog(new Cuptor::CuptorOff, Cuptor::FadeInOutTransition, null, null, null, null, null, null, null, null, false );
+      Cuptor::Globals.MenuBitmap = Resources::DefaultBitmap;
+      Cuptor::Globals.ClockHour = 0;
+      Cuptor::Globals.ClockMin = 0;
+      Cuptor::Globals.CookHour = 0;
+      Cuptor::Globals.CookMin = 0;
+      Cuptor::Globals.Temperature = 0;
+
+    } else {
+      Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+    }
+
+    Cuptor::Globals.IsOn = !Cuptor::Globals.IsOn;
+  }
+}
+
+$rect <90,170,320,210>
+$variant Win32Simulation
+vclass CuptorBaseClock : Cuptor::CuptorBaseClock
+{
+  $rect <20,20,160,60>
+  inherited object ClockTouchHandler
+  {
+    preset Point4 = <301,226>;
+    preset Point3 = <581,226>;
+    preset Point2 = <581,386>;
+    preset Point1 = <301,386>;
+  }
+}
+
+$rect <360,170,560,210>
+$variant Win32Simulation
+vclass CuptorMain : Cuptor::CuptorMain
+{
+  $rect <20,20,160,60>
+  inherited object Minutes
+  {
+    preset Bounds = <451,226,581,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Hours
+  {
+    preset Bounds = <300,226,430,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Dots
+  {
+    preset Bounds = <431,226,451,386>;
+  }
+}
+
+$rect <360,220,560,260>
+$variant Win32Simulation
+vclass CuptorEditClock : Cuptor::CuptorEditClock
+{
+  $rect <20,20,160,60>
+  inherited object Dots
+  {
+    preset Bounds = <430,226,450,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object MinutesList
+  {
+    preset Bounds = <451,226,581,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object HoursList
+  {
+    preset Bounds = <301,226,431,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object onMeniu
+  {
+    preset Point4 = <301,226>;
+    preset Point3 = <581,226>;
+    preset Point2 = <581,386>;
+    preset Point1 = <301,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object SlideHours
+  {
+    preset Bounds = <301,226,431,386>;
+  }
+
+  $rect <20,20,160,60>
+  inherited object SlideMinutes
+  {
+    preset Bounds = <451,226,581,386>;
+  }
+}

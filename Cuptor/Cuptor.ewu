@@ -1,0 +1,2142 @@
+﻿$version 10.00
+
+// This is the root component of the entire GUI application.
+$rect <220,60,420,100>
+$output false
+class Application : Core::Root
+{
+  $rect <500,50,700,90>
+  inherited method Init()
+  {
+    SwitchToDialog(new Cuptor::CuptorOff, null, null, null, null, null, null, null, null, null, false ); 
+
+  }
+
+  $rect <500,0,700,40>
+  inherited property Bounds = <0,0,480,272>;
+
+  $rect <500,100,700,140>
+  var Cuptor::GlobalsClass GlobalVariables = Cuptor::Globals;
+}
+
+$rect <940,70,1180,110>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonMinus
+{
+  preset FaceActive = Poze::minus;
+  preset FaceFocused = Poze::minus;
+  preset FaceDisabled = Poze::minus;
+  preset FaceDefault = Poze::minus;
+}
+
+$rect <940,110,1180,150>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonPlus
+{
+  preset FaceActive = Poze::plus;
+  preset FaceFocused = Poze::plus;
+  preset FaceDisabled = Poze::plus;
+  preset FaceDefault = Poze::plus;
+}
+
+$rect <940,150,1180,190>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonMenu
+{
+  preset FaceActive = Poze::meniu;
+  preset FaceFocused = Poze::meniu;
+  preset FaceDisabled = Poze::meniu;
+  preset FaceDefault = Poze::meniu;
+}
+
+$rect <940,190,1180,230>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonTimp
+{
+  preset FaceActive = Poze::timp;
+  preset FaceFocused = Poze::timp;
+  preset FaceDisabled = Poze::timp;
+  preset FaceDefault = Poze::timp;
+}
+
+$rect <940,230,1180,270>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonTemp
+{
+  preset FaceActive = Poze::temp;
+  preset FaceFocused = Poze::temp;
+  preset FaceDisabled = Poze::temp;
+  preset FaceDefault = Poze::temp;
+}
+
+$rect <940,270,1180,310>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonPlay
+{
+  preset FaceActive = Poze::play;
+  preset FaceFocused = Poze::play;
+  preset FaceDisabled = Poze::play;
+  preset FaceDefault = Poze::play;
+}
+
+$rect <940,310,1180,350>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonStop
+{
+  preset FaceActive = Poze::stop;
+  preset FaceFocused = Poze::stop;
+  preset FaceDisabled = Poze::stop;
+  preset FaceDefault = Poze::stop;
+}
+
+$rect <940,350,1180,390>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonPower
+{
+  preset FaceActive = Poze::power;
+  preset FaceFocused = Poze::power;
+  preset FaceDisabled = Poze::power;
+  preset FaceDefault = Poze::power;
+}
+
+// Push Button Config
+note group Note
+{
+  attr Bounds = <900,20,1210,500>;
+}
+
+// GUI Components
+note group Note1
+{
+  attr Bounds = <40,20,570,500>;
+}
+
+// Configs
+note group Note2
+{
+  attr Bounds = <590,20,880,190>;
+}
+
+$rect <640,60,840,100>
+$output false
+resource Resources::Font FontXXL
+{
+  attr fontname FontName = Roboto;
+  attr fontheight Height = 70;
+  attr fontheightmode HeightMode = Popular;
+  attr fontquality Quality = High;
+  attr fontranges Ranges = 0x20-0xFF;
+  attr fontaspectratio AspectRatio = 1.0;
+  attr fontbold Bold = true;
+  attr fontitalic Italic = false;
+  attr fontkerning Kerning = true;
+  attr fontrowdistance RowDistance;
+}
+
+$rect <640,100,840,140>
+$output false
+resource Resources::Font FontXL
+{
+  attr fontname FontName = Roboto;
+  attr fontheight Height = 20;
+  attr fontheightmode HeightMode = Popular;
+  attr fontquality Quality = High;
+  attr fontranges Ranges = 0x20-0xFF;
+  attr fontaspectratio AspectRatio = 1.0;
+  attr fontbold Bold = false;
+  attr fontitalic Italic = false;
+  attr fontkerning Kerning = true;
+  attr fontrowdistance RowDistance;
+}
+
+$rect <940,390,1180,430>
+$output false
+autoobject WidgetSet::PushButtonConfig PushButtonHome;
+
+$rect <640,230,840,270>
+$output false
+class GlobalsClass
+{
+  $rect <230,40,430,80>
+  var int32 Temperature = 0;
+
+  $rect <230,90,430,130>
+  var int32 CookHour = 0;
+
+  $rect <230,140,430,180>
+  var int32 CookMin = 0;
+
+  $rect <540,40,740,80>
+  var int32 ClockMin;
+
+  $rect <540,90,740,130>
+  var int32 ClockHour;
+
+  $rect <-70,50,130,90>
+  var bool IsOn = false;
+
+  $rect <850,40,1050,80>
+  object Core::Timer updateClockTimer
+  {
+    preset OnTrigger = onUpdateClock;
+    preset Period = 1;
+    preset Enabled = true;
+  }
+
+  $rect <850,80,1050,120>
+  slot onUpdateClock
+  {
+    if(Cuptor::Globals.IsOn){
+
+    currentClockSeconds++;
+
+    if ( currentClockSeconds % 60 == 0 ) 
+      {
+        if ( ClockMin == 59 ) 
+         {
+          ClockMin = 0;
+          if ( ClockHour == 23 )
+           {
+            ClockHour = 0;
+           } else {
+            ClockHour++;
+          }
+       } else 
+        {
+          ClockMin++;
+        }
+       postsignal OnTimeUpdate;
+      }
+    }
+  }
+
+  // Time simulation
+  note group Note
+  {
+    attr Bounds = <800,0,1100,240>;
+  }
+
+  $rect <850,120,1050,160>
+  var int32 currentClockSeconds;
+
+  $rect <850,160,1050,200>
+  property slot OnTimeUpdate;
+
+  $rect <230,190,430,230>
+  var Resources::Bitmap MenuBitmap = Resources::DefaultBitmap;
+
+  $rect <230,240,430,280>
+  var bool CuptorStatus = false;
+
+  // Cook Var
+  note group Note1
+  {
+    attr Bounds = <180,0,480,310>;
+  }
+
+  // Clock Var
+  note group Note2
+  {
+    attr Bounds = <490,0,790,200>;
+  }
+
+  // Display on/off
+  note group Note3
+  {
+    attr Bounds = <-110,0,172,120>;
+  }
+}
+
+$rect <640,270,840,310>
+$output false
+autoobject Cuptor::GlobalsClass Globals;
+
+// Global Variables
+note group Note3
+{
+  attr Bounds = <590,190,880,320>;
+}
+
+$rect <60,110,560,150>
+$output false
+class CuptorBase : Core::Group
+{
+  $rect <730,0,930,40>
+  inherited property Bounds = <0,0,480,272>;
+
+  $rect <20,20,160,60>
+  object Views::Image Background
+  {
+    preset Bounds = <0,0,480,272>;
+    preset Bitmap = Poze::Background;
+  }
+
+  $rect <520,0,720,40>
+  slot onOpenTemperature
+  {
+    trace "onTemperature";
+    Owner.SwitchToDialog(new Cuptor::CuptorTemperature, null, null, null, null, null, null, null, null, null, false );
+
+  }
+
+  $rect <520,40,720,80>
+  slot onOpenTime
+  {
+    trace "onOpenTime";
+    Owner.SwitchToDialog(new Cuptor::CuptorCookTime, null, null, null, null, null, null, null, null, null, false );
+
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Power
+  {
+    preset Bounds = <36,43,86,93>;
+    preset OnPress = onPower;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonPower;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Stop
+  {
+    preset Bounds = <61,111,111,161>;
+    preset OnPress = onStop;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonStop;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Temp
+  {
+    preset Bounds = <111,194,161,244>;
+    preset OnPress = onOpenTemperature;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonTemp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Time
+  {
+    preset Bounds = <226,194,276,244>;
+    preset OnPress = onOpenTime;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonTimp;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Menu
+  {
+    preset Bounds = <341,194,391,244>;
+    preset OnPress = onOpenMenu;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonMenu;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Minus
+  {
+    preset Bounds = <405,111,455,161>;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonMinus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Plus
+  {
+    preset Bounds = <405,43,455,93>;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonPlus;
+  }
+
+  $rect <20,20,160,60>
+  object WidgetSet::PushButton Play
+  {
+    preset Bounds = <11,111,61,161>;
+    preset OnPress = onPlay;
+    preset Label = "Caption";
+    preset Appearance = Cuptor::PushButtonPlay;
+  }
+
+  $rect <520,80,720,120>
+  slot onPower
+  {
+    trace "onPower";
+    if( Cuptor::Globals.IsOn ) {
+      Owner.SwitchToDialog(new Cuptor::CuptorOff, Cuptor::FadeInOutTransition, null, null, null, null, null, null, null, null, false );
+      Cuptor::Globals.MenuBitmap = Resources::DefaultBitmap;
+      Cuptor::Globals.ClockHour = 0;
+      Cuptor::Globals.ClockMin = 0;
+      Cuptor::Globals.CookHour = 0;
+      Cuptor::Globals.CookMin = 0;
+      Cuptor::Globals.Temperature = 0;
+    } else {
+      Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+    }
+
+    Cuptor::Globals.IsOn = !Cuptor::Globals.IsOn;
+  }
+
+  $rect <520,120,720,160>
+  slot onOpenMenu
+  {
+    trace "onMenu";
+    Owner.SwitchToDialog(new Cuptor::CuptorMenu, null, null, null, null, null, null, null, null, null, false );
+
+  }
+
+  $rect <520,160,720,200>
+  slot onClock
+  {
+    trace "onClock";
+    Owner.SwitchToDialog(new Cuptor::CuptorEditClock, null, null, null, null, null, null, null, null, null, false );
+
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image Display
+  {
+    preset Bounds = <111,18,391,178>;
+    preset Bitmap = Poze::Display;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Border DisplayBorder
+  {
+    preset Bounds = <111,18,391,178>;
+    preset Width = 2;
+    preset Color = #4B0D52FF;
+  }
+
+  $rect <520,200,720,240>
+  slot onPlay
+  {
+    trace "onPlay";
+    if( Cuptor::Globals.Temperature != 0 && Cuptor::Globals.CookHour != 0 || Cuptor::Globals.CookMin != 0 && Cuptor::Globals.MenuBitmap != Resources::DefaultBitmap )
+    {
+        Cuptor::Globals.CuptorStatus = true;
+        Owner.SwitchToDialog(new Cuptor::CuptorHeat, null, null, null, null, null, null, null, null, null, false );
+        trace Cuptor::Globals.CuptorStatus;
+    }
+
+  }
+
+  $rect <520,240,720,280>
+  slot onStop
+  {
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchTemp
+  {
+    preset Point4 = <111,194>;
+    preset Point3 = <161,194>;
+    preset Point2 = <161,244>;
+    preset Point1 = <111,244>;
+    preset OnPress = onOpenTemperature;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchTime
+  {
+    preset Point4 = <226,194>;
+    preset Point3 = <276,194>;
+    preset Point2 = <276,244>;
+    preset Point1 = <226,244>;
+    preset OnPress = onOpenTime;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchMenu
+  {
+    preset Point4 = <341,194>;
+    preset Point3 = <391,194>;
+    preset Point2 = <391,244>;
+    preset Point1 = <341,244>;
+    preset OnPress = onOpenMenu;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchStop
+  {
+    preset Point4 = <61,111>;
+    preset Point3 = <111,111>;
+    preset Point2 = <111,161>;
+    preset Point1 = <61,161>;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchPlay
+  {
+    preset Point4 = <11,111>;
+    preset Point3 = <61,111>;
+    preset Point2 = <61,161>;
+    preset Point1 = <11,161>;
+    preset OnPress = onPlay;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchPower
+  {
+    preset Point4 = <36,43>;
+    preset Point3 = <86,43>;
+    preset Point2 = <86,93>;
+    preset Point1 = <36,93>;
+    preset OnPress = onPower;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchMinus
+  {
+    preset Point4 = <405,111>;
+    preset Point3 = <455,111>;
+    preset Point2 = <455,161>;
+    preset Point1 = <405,161>;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler TouchPlus
+  {
+    preset Point4 = <405,43>;
+    preset Point3 = <455,43>;
+    preset Point2 = <455,93>;
+    preset Point1 = <405,93>;
+    preset Enabled = true;
+  }
+}
+
+$rect <360,190,560,230>
+$output false
+class CuptorMain : Cuptor::CuptorBaseClock
+{
+  $rect <520,0,710,40>
+  inherited method Init()
+  {
+    Cuptor::Globals.OnTimeUpdate = onTimeUpdate;
+    signal onTimeUpdate;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Minutes
+  {
+    preset Bounds = <261,18,391,178>;
+    preset ColorBL = #FFFFFFFF;
+    preset ColorBR = #FFFFFFFF;
+    preset ColorTR = #FFFFFFFF;
+    preset ColorTL = #FFFFFFFF;
+    preset Alignment = Views::TextAlignment[AlignHorzLeft, AlignVertCenter];
+    preset Font = Cuptor::FontXXL;
+    preset Color = #FFFFFFFF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Hours
+  {
+    preset Bounds = <111,18,241,178>;
+    preset Alignment = Views::TextAlignment[AlignHorzRight, AlignVertCenter];
+    preset Font = Cuptor::FontXXL;
+    preset Color = #FFFFFFFF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Dots
+  {
+    preset Bounds = <241,18,261,178>;
+    preset String = ":";
+    preset Font = Cuptor::FontXXL;
+  }
+
+  $rect <520,40,710,80>
+  slot onTimeUpdate
+  {
+    Hours.String = string( Cuptor::Globals.ClockHour, 2);
+    Minutes.String = string( Cuptor::Globals.ClockMin, 2);
+  }
+
+  $rect <520,80,710,120>
+  object Effects::ColorEffect ColorEffect
+  {
+    preset OnAnimate = null;
+    preset Noise = 0.0;
+    preset NoOfCycles = 1;
+    preset Enabled = true;
+    preset Outlet = ^Objects;
+  }
+
+  $rect <520,120,710,160>
+  property color Objects;
+
+  $rect <520,160,710,200>
+  onset Objects
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Objects == value )
+      return;
+
+    // Remember the property's new value.
+    pure Objects = value;
+    Hours.Color = Objects;
+    Dots.Color = Objects;
+    Minutes.Color = Objects;
+  }
+}
+
+$rect <330,150,560,190>
+$output false
+class CuptorBaseClock : Cuptor::CuptorBase
+{
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler ClockTouchHandler
+  {
+    preset Point4 = <111,18>;
+    preset Point3 = <391,18>;
+    preset Point2 = <391,178>;
+    preset Point1 = <111,178>;
+    preset OnPress = onClock;
+  }
+}
+
+$rect <90,150,290,190>
+$output false
+class CuptorOff : Cuptor::CuptorBase
+{
+  $rect <20,20,160,60>
+  inherited object Stop
+  {
+    preset Visible = true;
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Temp
+  {
+    preset Visible = true;
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Time
+  {
+    preset Visible = true;
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Menu
+  {
+    preset Visible = true;
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Minus
+  {
+    preset Visible = true;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Plus
+  {
+    preset Visible = true;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Play
+  {
+    preset Visible = true;
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTemp
+  {
+    preset Enabled = false;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTime
+  {
+    preset Enabled = false;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMenu
+  {
+    preset Enabled = false;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchStop
+  {
+    preset Enabled = false;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlay
+  {
+    preset Enabled = false;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPower
+  {
+    preset OnPress = onPower;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMinus
+  {
+    preset Enabled = false;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlus
+  {
+    preset Enabled = false;
+  }
+}
+
+$rect <360,230,560,270>
+$output false
+class CuptorEditClock : Cuptor::CuptorBaseClock
+{
+  $rect <510,0,690,40>
+  inherited method Init()
+  {
+    HoursList.ScrollOffset = - Cuptor::Globals.ClockHour * 160;
+    MinutesList.ScrollOffset = - Cuptor::Globals.ClockMin * 160;
+  }
+
+  $rect <510,40,710,80>
+  inherited slot onClock
+  {
+    Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Dots
+  {
+    preset Bounds = <241,18,261,178>;
+    preset String = ":";
+    preset Font = Cuptor::FontXXL;
+  }
+
+  $rect <20,20,160,60>
+  object Core::VerticalList MinutesList
+  {
+    preset Bounds = <261,18,391,178>;
+    preset OnUpdate = OnUpdateMin;
+    preset OnLoadItem = OnLoadMinutes;
+    preset Endless = true;
+    preset SlideHandler = SlideMinutes;
+    preset ItemHeight = 160;
+    preset NoOfItems = 60;
+  }
+
+  $rect <20,20,160,60>
+  object Core::VerticalList HoursList
+  {
+    preset Bounds = <111,18,241,178>;
+    preset OnUpdate = OnUpdateHour;
+    preset OnLoadItem = OnLoadHour;
+    preset Endless = true;
+    preset SlideHandler = SlideHours;
+    preset ItemHeight = 160;
+    preset NoOfItems = 24;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler onMeniu
+  {
+    preset Point4 = <111,18>;
+    preset Point3 = <391,18>;
+    preset Point2 = <391,178>;
+    preset Point1 = <111,178>;
+    preset OnPress = onClock;
+  }
+
+  // This method is called by 'VerticalList2' every time the list loads or updates \
+  // an item.
+  $rect <510,200,710,240>
+  slot OnLoadMinutes
+  {
+    var int32       itemNo   = MinutesList.Item;
+    var Views::Text itemView = (Views::Text)MinutesList.View;
+
+    // Configure the item view ...
+    itemView.String =  string( itemNo, 2);
+    itemView.Font   = Cuptor::FontXXL;
+    itemView.Color  = #FFFFFFFF;
+
+    // Ensure that the item has correct size. The position of the item will be
+    // managed by the list component.
+    itemView.Bounds.size = point( MinutesList.Bounds.w, MinutesList.ItemHeight );
+
+  }
+
+  // This method is called by 'VerticalList' every time the list loads or updates \
+  // an item.
+  $rect <510,160,710,200>
+  slot OnLoadHour
+  {
+    var int32       itemNo   = HoursList.Item;
+    var Views::Text itemView = (Views::Text)HoursList.View;
+
+    // Configure the item view ...
+    itemView.String =  string( itemNo, 2);
+    itemView.Font   = Cuptor::FontXXL;
+    itemView.Color  = #FFFFFFFF;
+
+    // Ensure that the item has correct size. The position of the item will be
+    // managed by the list component.
+    itemView.Bounds.size = point( HoursList.Bounds.w, HoursList.ItemHeight );
+  }
+
+  $rect <20,20,160,60>
+  object Core::SlideTouchHandler SlideHours
+  {
+    preset Bounds = <111,18,241,178>;
+    preset SnapNext = <0,160>;
+    preset SlideHorz = false;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SlideTouchHandler SlideMinutes
+  {
+    preset Bounds = <261,18,391,178>;
+    preset SnapNext = <0,160>;
+  }
+
+  $rect <510,240,710,280>
+  object Effects::ColorEffect DotEffect
+  {
+    preset Reversed = false;
+    preset Symmetric = true;
+    preset Oscillations = 3;
+    preset TimingCustom1 = 0.0;
+    preset Timing = Effects::Timing.Back_InOut;
+    preset InitialDelay = 1000;
+    preset Enabled = true;
+    preset Outlet = ^Dots.Color;
+  }
+
+  $rect <510,80,710,120>
+  slot OnUpdateHour
+  {
+    Cuptor::Globals.ClockHour = HoursList.GetItemAtPosition( <165,98> );
+  }
+
+  $rect <510,120,710,160>
+  slot OnUpdateMin
+  {
+    Cuptor::Globals.ClockMin = MinutesList.GetItemAtPosition( <330,98> );
+  }
+
+  $rect <720,0,920,40>
+  object Effects::Int32Effect Int32Effect
+  {
+    preset NoOfCycles = 1;
+    preset CycleDuration = 1000;
+    preset Enabled = true;
+    preset Outlet = ^Objects;
+  }
+
+  $rect <730,40,920,80>
+  property int32 Objects;
+
+  $rect <730,80,920,120>
+  onset Objects
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Objects == value )
+      return;
+
+    // Remember the property's new value.
+    pure Objects = value;
+    Dots.Opacity = Objects;
+    HoursList.Opacity = Objects;
+    MinutesList.Opacity = Objects;
+
+  }
+}
+
+$rect <88,190,290,230>
+$output false
+class CuptorTemperature : Cuptor::CuptorBase
+{
+  $rect <520,80,720,120>
+  inherited slot onOpenTemperature
+  {
+    Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+  }
+
+  $rect <20,20,160,60>
+  inherited object Temp
+  {
+    preset OnPress = onOpenTemperature;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Minus
+  {
+    preset OnPress = onDecrement;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Plus
+  {
+    preset OnPress = onIncrement;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTemp
+  {
+    preset OnPress = onOpenTemperature;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTime
+  {
+    preset OnPress = onOpenTime;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMenu
+  {
+    preset OnPress = onOpenMenu;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchStop
+  {
+    preset Enabled = false;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlay
+  {
+    preset OnPress = onPlay;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPower
+  {
+    preset OnPress = onPower;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMinus
+  {
+    preset OnHold = onDecrement;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlus
+  {
+    preset OnHold = onIncrement;
+    preset Enabled = true;
+  }
+
+  $rect <520,0,720,40>
+  slot onIncrement
+  {
+    if(Plus.OnPress)
+    {
+       Cuptor::Globals.Temperature++; 
+    }
+
+    if(Plus.OnPress && Cuptor::Globals.Temperature > 250)
+    {
+       Cuptor::Globals.Temperature = 250;
+    }
+
+    TempValue.String = Cuptor::Globals.Temperature;  
+  }
+
+  $rect <520,40,720,80>
+  slot onDecrement
+  {
+    if(Minus.OnPress)
+    {
+       Cuptor::Globals.Temperature--; 
+    }
+
+    if(Minus.OnPress && Cuptor::Globals.Temperature < 0)
+    {
+       Cuptor::Globals.Temperature = 0;
+    }
+
+    TempValue.String = Cuptor::Globals.Temperature;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image Celsius
+  {
+    preset StackingPriority = 1;
+    preset Bounds = <251,18,389,178>;
+    preset Color = #FFFFFFFF;
+    preset Bitmap = Poze::celsius;
+    preset Opacity = 255;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text TempValue
+  {
+    preset Bounds = <111,18,251,178>;
+    preset Alignment = Views::TextAlignment[AlignHorzRight, AlignVertCenter];
+    preset String = Cuptor::Globals.Temperature;
+    preset Font = Cuptor::FontXXL;
+  }
+
+  $rect <520,120,710,160>
+  object Effects::ColorEffect ColorEffect
+  {
+    preset OnAnimate = null;
+    preset NoOfCycles = 1;
+    preset Enabled = true;
+    preset Outlet = ^Objects;
+  }
+
+  $rect <520,160,710,200>
+  property color Objects;
+
+  $rect <520,200,710,240>
+  onset Objects
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Objects == value )
+      return;
+
+    // Remember the property's new value.
+    pure Objects = value;
+    TempValue.Color = Objects;
+
+
+  }
+
+  $rect <510,240,710,280>
+  object Effects::Int32Effect Int32Effect
+  {
+    preset NoOfCycles = 1;
+    preset CycleDuration = 2000;
+    preset Enabled = true;
+    preset Outlet = ^Celsius.Opacity;
+  }
+}
+
+$rect <90,230,290,270>
+$output false
+class CuptorCookTime : Cuptor::CuptorBase
+{
+  $rect <520,0,720,40>
+  inherited method Init()
+  {
+    Hours.String = string( Cuptor::Globals.CookHour, 2);
+    Minutes.String = string( Cuptor::Globals.CookMin, 2);
+  }
+
+  $rect <520,160,720,200>
+  inherited slot onOpenTime
+  {
+    Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+  }
+
+  $rect <20,20,160,60>
+  inherited object Temp
+  {
+    preset OnPress = onOpenTemperature;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Time
+  {
+    preset OnPress = onOpenTime;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Minus
+  {
+    preset OnPress = onDecrement;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Plus
+  {
+    preset OnPress = onIncrement;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Minutes
+  {
+    preset Bounds = <261,18,391,178>;
+    preset Alignment = Views::TextAlignment[AlignHorzLeft, AlignVertCenter];
+    preset String = Cuptor::Globals.CookMin;
+    preset Font = Cuptor::FontXXL;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Hours
+  {
+    preset Bounds = <111,18,241,178>;
+    preset Alignment = Views::TextAlignment[AlignHorzRight, AlignVertCenter];
+    preset String = Cuptor::Globals.CookHour;
+    preset Font = Cuptor::FontXXL;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Dots
+  {
+    preset Bounds = <241,18,261,178>;
+    preset String = ":";
+    preset Font = Cuptor::FontXXL;
+  }
+
+  $rect <520,40,720,80>
+  object Effects::ColorEffect DotEffect
+  {
+    preset Reversed = false;
+    preset Symmetric = true;
+    preset Oscillations = 3;
+    preset TimingCustom1 = 0.0;
+    preset Timing = Effects::Timing.Back_InOut;
+    preset InitialDelay = 1000;
+    preset Enabled = true;
+    preset Outlet = ^Dots.Color;
+  }
+
+  $rect <520,80,720,120>
+  slot onIncrement
+  {
+    if(Plus.OnPress)
+    {
+      Cuptor::Globals.CookMin++; 
+
+      if(Plus.OnPress && Cuptor::Globals.CookMin > 59)
+      {
+         Cuptor::Globals.CookHour++;
+         Cuptor::Globals.CookMin = 0;
+      }
+      if(Plus.OnPress && Cuptor::Globals.CookHour > 59)
+      {
+        Cuptor::Globals.CookHour = 0;
+        Cuptor::Globals.CookMin = 0;
+      }
+    }
+    Minutes.String = string(Cuptor::Globals.CookMin,2); 
+    Hours.String = string(Cuptor::Globals.CookHour,2);  
+  }
+
+  $rect <520,120,720,160>
+  slot onDecrement
+  {
+    if(Minus.OnPress)
+    {
+        Cuptor::Globals.CookMin--; 
+    }
+    if(Cuptor::Globals.CookMin < 0)
+    {
+        Cuptor::Globals.CookMin = 0; 
+    }
+    if(Minus.OnPress && Cuptor::Globals.CookMin == 0 && Cuptor::Globals.CookHour > 0)
+    {
+       Cuptor::Globals.CookHour--;
+       Cuptor::Globals.CookMin  = 59;
+    }
+    Minutes.String  =  string(Cuptor::Globals.CookMin,2); 
+    Hours.String    = string(Cuptor::Globals.CookHour,2);
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler HoldPlus
+  {
+    preset Point4 = <405,43>;
+    preset Point3 = <455,43>;
+    preset Point2 = <455,98>;
+    preset Point1 = <405,98>;
+    preset OnHold = onIncrement;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler HoldMinus
+  {
+    preset Point4 = <405,106>;
+    preset Point3 = <455,106>;
+    preset Point2 = <455,161>;
+    preset Point1 = <405,161>;
+    preset OnHold = onDecrement;
+  }
+
+  $rect <520,200,710,240>
+  object Effects::ColorEffect ColorEffect
+  {
+    preset OnAnimate = null;
+    preset Noise = 0.0;
+    preset NoOfCycles = 1;
+    preset Enabled = true;
+    preset Outlet = ^Objects;
+  }
+
+  $rect <520,240,710,280>
+  property color Objects;
+
+  $rect <520,280,710,320>
+  onset Objects
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Objects == value )
+      return;
+
+    // Remember the property's new value.
+    pure Objects = value;
+    Hours.Color = Objects;
+    Dots.Color = Objects;
+    Minutes.Color = Objects;
+  }
+}
+
+$rect <90,270,290,310>
+$output false
+class CuptorMenu : Cuptor::CuptorBase
+{
+  $rect <510,30,710,70>
+  inherited slot onOpenMenu
+  {
+    Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+  }
+
+  // This method is called by 'VerticalList' every time the list loads or updates \
+  // an item.
+  $rect <510,-10,710,30>
+  slot OnLoadItem
+  {
+    // Get the number of the item to load. The list component takes care of the
+    // creation of the corresponding item view. Just access it ...
+    var int32            itemNo   = VerticalList.Item;
+    var Cuptor::MenuItem itemView = (Cuptor::MenuItem)VerticalList.View;
+
+    // Configure the item view ...
+    if ( itemNo == 0 ) {
+      itemView.Text.String = "Element de incalzire \ninferiror - superior si\n ventilator";
+      itemView.Icon.Bitmap = Poze::Meniu1;
+      itemView.OnPressHandler.OnPress = onFirstPress;
+    } else if ( itemNo == 1 ) {
+      itemView.Text.String = "Grill";
+      itemView.Icon.Bitmap = Poze::Meniu2;
+      itemView.OnPressHandler.OnPress = onSecondPress;
+    } else if ( itemNo == 2 ) {
+      itemView.Text.String = "Element de incalzire \nsuperior si ventilator";
+      itemView.Icon.Bitmap = Poze::Meniu3;
+      itemView.OnPressHandler.OnPress = onThirdPress;
+    } else if ( itemNo == 3 ) {
+      itemView.Text.String = "Grill si ventilator";
+      itemView.Icon.Bitmap = Poze::Meniu4;
+      itemView.OnPressHandler.OnPress = onFourthPress; 
+    } else if ( itemNo == 4 ) {
+      itemView.Text.String = "Element de incalzire \ninferior si ventilator";
+      itemView.Icon.Bitmap = Poze::Meniu5;
+      itemView.OnPressHandler.OnPress = onFifthPress;
+    } else if ( itemNo == 5 ) {
+      itemView.Text.String = "Element de incalzire \ninferior si superior";
+      itemView.Icon.Bitmap = Poze::Meniu6;
+      itemView.OnPressHandler.OnPress = onSixthPress;
+    }
+
+
+    itemView.Bounds.size = point( VerticalList.Bounds.w, VerticalList.ItemHeight );
+  }
+
+  $rect <790,30,990,70>
+  slot onFirstPress
+  {
+    trace "First press";
+
+    Cuptor::Globals.MenuBitmap = Poze::Meniu1;
+  }
+
+  $rect <20,20,160,60>
+  object Core::VerticalList VerticalList
+  {
+    preset Bounds = <111,18,391,178>;
+    preset OnLoadItem = OnLoadItem;
+    preset PaddingBottom = 0;
+    preset SlideHandler = SlideMenuHandler;
+    preset ScrollOffset = 0;
+    preset PaddingTop = 0;
+    preset ItemHeight = 80;
+    preset NoOfItems = 6;
+    preset ItemClass = Cuptor::MenuItem;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SlideTouchHandler SlideMenuHandler
+  {
+    preset Bounds = <111,18,391,178>;
+    preset SnapNext = <0,80>;
+    preset SlideHorz = false;
+    preset RetargetDelay = 200;
+    preset RetargetCondition = Core::RetargetReason[LongPress];
+  }
+
+  $rect <790,70,990,110>
+  slot onSecondPress
+  {
+    trace "Second press";
+
+    Cuptor::Globals.MenuBitmap = Poze::Meniu2;
+  }
+
+  $rect <790,110,990,150>
+  slot onThirdPress
+  {
+    trace "Third press";
+
+    Cuptor::Globals.MenuBitmap = Poze::Meniu3;
+  }
+
+  $rect <790,150,990,190>
+  slot onFourthPress
+  {
+    trace "Fourth press";
+
+    Cuptor::Globals.MenuBitmap = Poze::Meniu4;
+  }
+
+  $rect <790,190,990,230>
+  slot onFifthPress
+  {
+    trace "Fifth press";
+
+    Cuptor::Globals.MenuBitmap = Poze::Meniu5;
+  }
+
+  $rect <790,230,990,270>
+  slot onSixthPress
+  {
+    trace "Sixth press";
+
+    Cuptor::Globals.MenuBitmap = Poze::Meniu6;
+  }
+
+  // Save select
+  note group Note
+  {
+    attr Bounds = <730,-10,1030,280>;
+  }
+
+  $rect <510,70,710,110>
+  object Effects::Int32Effect Int32Effect
+  {
+    preset NoOfCycles = 1;
+    preset CycleDuration = 2000;
+    preset Enabled = true;
+    preset Outlet = ^VerticalList.Opacity;
+  }
+}
+
+$rect <640,360,840,400>
+$output false
+class MenuItem : Core::Group
+{
+  $rect <-30,150,170,190>
+  inherited property Bounds = <0,0,280,80>;
+
+  $rect <20,20,160,60>
+  object Views::Image Icon
+  {
+    preset Bounds = <0,0,80,80>;
+    preset Bitmap = Resources::DefaultBitmap;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Text
+  {
+    preset Bounds = <80,0,280,80>;
+    preset Alignment = Views::TextAlignment[AlignHorzLeft, AlignVertCenter];
+    preset String = "Text";
+    preset Font = Cuptor::FontXL;
+    preset Color = #FFFFFFFF;
+  }
+
+  $rect <20,20,160,60>
+  object Core::SimpleTouchHandler OnPressHandler
+  {
+    preset Point4 = <0,0>;
+    preset Point3 = <280,0>;
+    preset Point2 = <280,78>;
+    preset Point1 = <0,78>;
+    preset RetargetCondition = Core::RetargetReason[WipeDown, WipeUp];
+  }
+
+  $rect <20,20,160,60>
+  object Views::Border Border
+  {
+    preset Bounds = <0,0,280,80>;
+    preset Width = 2;
+    preset Color = #0A285AFF;
+  }
+}
+
+$rect <90,310,290,350>
+$output false
+class CuptorHeat : Cuptor::CuptorBase
+{
+  $rect <20,20,160,60>
+  inherited object Temp
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Time
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Menu
+  {
+    preset OnPress = null;
+  }
+
+  $rect <510,200,710,240>
+  inherited slot onPlay
+  {
+    if(Cuptor::Globals.CuptorStatus == false)
+    {
+      Cuptor::Globals.CuptorStatus = true;
+      onTextFalse.Visible = false;
+      onTextTrue.Visible = true;
+      onProgressBarEffect.Enabled = true;
+      onProgressBarEffect.Value1 = ProgressBarPosition;
+      Circle.Animated = true;
+      Fire.Animated = true;           
+    trace onProgressBarEffect.Value;     
+    }              
+  }
+
+  $rect <510,160,710,200>
+  inherited slot onStop
+  {
+    if(Cuptor::Globals.CuptorStatus == false)
+    {
+       Cuptor::Globals.Temperature = 0;
+       Cuptor::Globals.CookHour = 0;
+       Cuptor::Globals.CookMin = 0;
+       Cuptor::Globals.MenuBitmap = Resources::DefaultBitmap; 
+       Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+    }
+
+    if(Cuptor::Globals.CuptorStatus == true)
+    {
+      Cuptor::Globals.CuptorStatus = false;
+      onTextFalse.Visible = true;
+      onTextTrue.Visible = false;
+      onProgressBarEffect.Enabled = false;
+      Circle.Animated = false;
+      Fire.Animated = false;
+      ProgressBarPosition = onProgressBarEffect.Value;
+      trace ProgressBarPosition;
+    }
+
+
+
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchStop
+  {
+    preset OnPress = onStop;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image Fire
+  {
+    preset Bounds = <211,51,291,111>;
+    preset Animated = true;
+    preset ScrollOffset = <0,0>;
+    preset FrameNumber = 0;
+    preset Bitmap = Poze::FireGif;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text onTextTrue
+  {
+    preset Bounds = <202,121,328,151>;
+    preset Alignment = Views::TextAlignment[AlignVertCenter];
+    preset String = "Heating up";
+    preset Font = Cuptor::FontXL;
+    preset Visible = true;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text onTextFalse
+  {
+    preset Bounds = <215,121,315,154>;
+    preset Alignment = Views::TextAlignment[AlignVertCenter];
+    preset String = "Stopped";
+    preset Font = Cuptor::FontXL;
+    preset Visible = false;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image Circle
+  {
+    preset Bounds = <220,54,284,118>;
+    preset Animated = true;
+    preset Bitmap = Poze::CircleGif;
+  }
+
+  $rect <20,20,160,60>
+  object Cuptor::ProgressBar ProgressBar
+  {
+    preset Bounds = <152,156,352,161>;
+  }
+
+  $rect <510,0,710,40>
+  object Effects::Int32Effect onProgressBarEffect
+  {
+    preset OnFinished = onEnd;
+    preset OnAnimate = null;
+    preset NoOfCycles = 1;
+    preset CycleDuration = 14000;
+    preset InitialDelay = 800;
+    preset Enabled = true;
+    preset Value2 = 105;
+    preset Value1 = 0;
+    preset Outlet = ^ProgressBar.Update;
+  }
+
+  $rect <510,120,710,160>
+  slot onUpdateText
+  {
+    if(Cuptor::Globals.IsOn == false)
+    {
+      onProgressBarEffect.Enabled = false;
+      onUpdateTextTimer.Enabled = false;
+    }
+
+    if(Cuptor::Globals.CuptorStatus == true)
+     {
+     if(onTextTrue.String =="Heating up")
+         onTextTrue.String = "Heating up.";
+     else if(onTextTrue.String =="Heating up.")
+           onTextTrue.String ="Heating up..";
+     else if(onTextTrue.String =="Heating up..")
+          onTextTrue.String ="Heating up...";
+     else if(onTextTrue.String =="Heating up...")
+          onTextTrue.String ="Heating up";
+    //trace onProgressBarEffect.Value;
+    //trace onTextTrue.String;
+    }
+
+    if(Cuptor::Globals.CuptorStatus == false)
+    {
+     if(onTextFalse.String == "Stopped")
+         onTextFalse.String = "Stopped.";
+     else if(onTextFalse.String == "Stopped.")
+           onTextFalse.String = "Stopped..";
+     else if(onTextFalse.String == "Stopped..")
+          onTextFalse.String = "Stopped...";
+     else if(onTextFalse.String == "Stopped...")
+          onTextFalse.String = "Stopped";
+    //trace onProgressBarEffect.Value;
+    //trace onTextFalse.String;
+    }
+
+
+  }
+
+  $rect <510,80,710,120>
+  object Core::Timer onUpdateTextTimer
+  {
+    preset OnTrigger = onUpdateText;
+    preset Period = 600;
+    preset Enabled = true;
+  }
+
+  $rect <510,40,710,80>
+  slot onEnd
+  {
+    Owner.SwitchToDialog(new Cuptor::CuptorCook, null, null, null, null, null, null, null, null, null, false );
+  }
+
+  $rect <510,240,710,280>
+  var int32 ProgressBarPosition = 0;
+
+  $rect <720,0,920,40>
+  object Effects::Int32Effect Int32Effect
+  {
+    preset NoOfCycles = 1;
+    preset CycleDuration = 1000;
+    preset Enabled = true;
+    preset Outlet = ^Objects;
+  }
+
+  $rect <730,40,920,80>
+  property int32 Objects;
+
+  $rect <730,80,920,120>
+  onset Objects
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Objects == value )
+      return;
+
+    // Remember the property's new value.
+    pure Objects = value;
+    Circle.Opacity = Objects;
+    ProgressBar.Opacity = Objects;
+    Fire.Opacity = Objects;
+    onTextFalse.Opacity = Objects;
+    onTextTrue.Opacity = Objects;
+  }
+}
+
+$rect <640,400,840,440>
+$output false
+class ProgressBar : Core::Group
+{
+  $rect <240,0,440,40>
+  inherited property Bounds = <0,0,200,5>;
+
+  $rect <250,90,450,130>
+  inherited method UpdateLayout()
+  {
+    // Always invoke the inherited method.
+    super( aSize );
+
+    Back.Bounds = Bounds.orect;
+    Border.Bounds = Bounds.orect;
+
+    /*
+
+      HINT:
+
+      This method exists for sophisticated layout calculation. Please note, that in 
+      most cases it is completely sufficient to use the views property 'Layout' to
+      determine how the view should behave when the component is resized.
+
+    */
+
+    /*
+
+      TO DO:
+
+      Put here the code to calculate new position and size of enclosed views. The
+      current (new) size of the component itself is passed in the parameter aSize.
+      For example:
+
+        SomeView.Bounds = rect( 10, 10, aSize.x - 20, aSize.y - 20 );
+
+    */
+  }
+
+  $rect <250,50,450,90>
+  inherited method UpdateViewState()
+  {
+    super( aState );
+
+    var rect bounds = Bounds.orect;
+    bounds.w = bounds.w * Update / 100;
+    Front.Bounds = bounds;
+
+
+    //if(bounds.w == 120)
+     
+
+
+
+  }
+
+  $rect <20,20,160,60>
+  object Views::Border Border
+  {
+    preset Bounds = <0,0,120,10>;
+    preset Width = 1;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle Back
+  {
+    preset Bounds = <0,0,120,10>;
+    preset Color = #BABABAFF;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Rectangle Front
+  {
+    preset Bounds = <0,0,0,10>;
+    preset ColorBL = #DEAD41FF;
+    preset ColorBR = #D26C20FF;
+    preset ColorTR = #DEAD41FF;
+    preset ColorTL = #D26C20FF;
+  }
+
+  $rect <490,0,690,40>
+  property int32 Update;
+
+  $rect <490,40,690,80>
+  onset Update
+  {
+    if(value > 100)
+      value = 100;
+    else if(value < 0)
+      value = 0; 
+
+    if ( pure Update == value )
+      return;
+
+    // Remember the property's new value.
+    pure Update = value;
+
+    InvalidateViewState();
+
+
+  }
+
+  $rect <490,80,690,120>
+  onget Update
+  {
+    return pure Update;
+  }
+}
+
+// GUI Items
+note group Note4
+{
+  attr Bounds = <590,320,880,500>;
+}
+
+$rect <90,350,290,390>
+$output false
+class CuptorCook : Cuptor::CuptorBase
+{
+  $rect <500,0,700,40>
+  inherited method Init()
+  {
+    CookText.String = string(Cuptor::Globals.CookHour,2) + ":" + string(Cuptor::Globals.CookMin,2);
+    ProgressBar.Update = 100;
+    SetTemperature.String = string(Cuptor::Globals.Temperature) + "°C";
+    Cuptor::Globals.OnTimeUpdate = onTimeUpdate;
+    signal onTimeUpdate;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Temp
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Play
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object Menu
+  {
+    preset OnPress = null;
+  }
+
+  $rect <500,280,700,320>
+  inherited slot onPlay
+  {
+    if(Cuptor::Globals.CuptorStatus == false)
+    { 
+       Cuptor::Globals.CuptorStatus = true;
+       CookText.String = string(Cuptor::Globals.CookHour,2) + ":" + string(Cuptor::Globals.CookMin,2);
+    } 
+  }
+
+  $rect <500,240,700,280>
+  inherited slot onStop
+  {
+    if(Cuptor::Globals.CuptorStatus == false)
+    {
+       Cuptor::Globals.Temperature = 0;
+       Cuptor::Globals.CookHour = 0;
+       Cuptor::Globals.CookMin = 0;
+       Cuptor::Globals.MenuBitmap = Resources::DefaultBitmap; 
+       Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+    }
+
+    if(Cuptor::Globals.CuptorStatus == true)
+    {
+       Cuptor::Globals.CuptorStatus = false;
+
+    } 
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTemp
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTime
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchStop
+  {
+    preset OnPress = onStop;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlay
+  {
+    preset OnPress = onPlay;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image MenuImage
+  {
+    preset Bounds = <126,73,176,123>;
+    preset Bitmap = Cuptor::Globals.MenuBitmap;
+  }
+
+  $rect <500,40,700,80>
+  slot onTimeUpdate
+  {
+    ClockText.String = string(Cuptor::Globals.ClockHour,2) + ":" + string(Cuptor::Globals.ClockMin,2);
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text ClockText
+  {
+    preset Bounds = <238,43,288,73>;
+    preset String = "Text";
+    preset Font = Cuptor::FontXL;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image ClockIcon
+  {
+    preset Bounds = <200,43,230,73>;
+    preset Bitmap = Poze::clock;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text CookText
+  {
+    preset Bounds = <238,121,288,151>;
+    preset String = "Text";
+    preset Font = Cuptor::FontXL;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMenu
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image Termometru
+  {
+    preset Bounds = <304,43,336,75>;
+    preset Bitmap = Poze::termometru;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text SetTemperature
+  {
+    preset Bounds = <329,121,379,151>;
+    preset String = "Text";
+    preset Font = Cuptor::FontXL;
+  }
+
+  $rect <20,20,160,60>
+  object Views::Image PlayIcon
+  {
+    preset Bounds = <304,120,336,152>;
+    preset Bitmap = Poze::playCook;
+  }
+
+  $rect <20,20,160,60>
+  object Cuptor::ProgressBar ProgressBar
+  {
+    preset Bounds = <329,57,379,62>;
+  }
+
+  $rect <500,80,700,120>
+  object Core::Timer Timer
+  {
+    preset OnTrigger = onUpdateView;
+    preset Period = 1;
+    preset Enabled = true;
+  }
+
+  $rect <500,120,700,160>
+  slot onUpdateView
+  {
+    secondsCounter++;
+
+    if(Cuptor::Globals.IsOn == false)
+    {
+      Timer.Enabled = false;
+    }
+
+    if(Cuptor::Globals.CuptorStatus == true)
+    {
+      if(secondsCounter % 60 == 0)
+      {
+        if(Cuptor::Globals.CookMin == 0 && Cuptor::Globals.CookHour > 0)
+        {
+           Cuptor::Globals.CookMin = 59;
+           Cuptor::Globals.CookHour--;  
+        }
+        else if(Cuptor::Globals.CookMin == 0 && Cuptor::Globals.CookHour == 0 && Cuptor::Globals.IsOn == true) 
+        {
+              Timer.Enabled = false;
+              Cuptor::Globals.Temperature = 0;
+              Cuptor::Globals.MenuBitmap = Resources::DefaultBitmap; 
+              Owner.SwitchToDialog(new Cuptor::CuptorEnd, null, null, null, null, null, null, null, null, null, false );
+        }
+        else
+              Cuptor::Globals.CookMin--;
+
+      CookText.String = string(Cuptor::Globals.CookHour,2) + ":" + string(Cuptor::Globals.CookMin,2);
+      }
+    }
+
+    if(Cuptor::Globals.CuptorStatus == false)
+    { 
+       CookText.String = "STOP"; 
+    }
+
+    if(onHeat == false)
+    {
+      if(secondsCounter % 60 == 0)
+      {
+        ProgressBar.Update--;
+        trace ProgressBar.Update;
+      }
+      if(ProgressBar.Update == 90)
+      {
+         onHeat = true;
+         trace onHeat;
+      }
+
+    }else{
+        if(secondsCounter % 60 == 0)
+        {
+          ProgressBar.Update++;
+          trace ProgressBar.Update;
+        }
+        if(ProgressBar.Update == 100)
+        {
+          onHeat = false;
+          trace onHeat;
+        }
+    }
+
+
+
+      
+
+  }
+
+  $rect <500,160,700,200>
+  var int32 secondsCounter = 0;
+
+  $rect <500,200,700,240>
+  var bool onHeat = false;
+
+  $rect <20,20,160,60>
+  object Views::Image TimerIcon
+  {
+    preset Bounds = <203,123,228,148>;
+    preset Bitmap = Poze::timer;
+  }
+
+  $rect <720,0,920,40>
+  object Effects::Int32Effect Int32Effect
+  {
+    preset NoOfCycles = 1;
+    preset CycleDuration = 1000;
+    preset Enabled = true;
+    preset Outlet = ^Objects;
+  }
+
+  $rect <730,40,920,80>
+  property int32 Objects;
+
+  $rect <730,80,920,120>
+  onset Objects
+  {
+    // The value doesn't change - nothing to do.
+    if ( pure Objects == value )
+      return;
+
+    // Remember the property's new value.
+    pure Objects = value;
+    TimerIcon.Opacity = Objects;
+    CookText.Opacity = Objects;
+    PlayIcon.Opacity = Objects;
+    SetTemperature.Opacity = Objects;
+    Termometru.Opacity = Objects;
+    ClockText.Opacity = Objects;
+    ClockIcon.Opacity = Objects;
+    MenuImage.Opacity = Objects;
+    ProgressBar.Opacity = Objects;
+  }
+
+  $reorder Minus 1
+  $reorder Plus 1
+  $reorder Play 1
+  $reorder onPower 1
+  $reorder onOpenMenu 1
+  $reorder onClock 1
+  $reorder Display 1
+  $reorder onPlay 1
+  $reorder onStop 1
+  $reorder TouchTemp 1
+  $reorder TouchTime 1
+  $reorder TouchStop 1
+  $reorder TouchPlay 1
+  $reorder TouchPower 1
+  $reorder TouchMinus 1
+  $reorder TouchPlus 1
+  $reorder MenuImage 1
+  $reorder onTimeUpdate 1
+  $reorder ClockText 1
+  $reorder ClockIcon 1
+  $reorder CookText 1
+}
+
+$rect <90,390,290,430>
+$output false
+class CuptorEnd : Cuptor::CuptorBase
+{
+  $rect <20,20,160,60>
+  inherited object TouchTemp
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchTime
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchMenu
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPlay
+  {
+    preset OnPress = null;
+  }
+
+  $rect <20,20,160,60>
+  inherited object TouchPower
+  {
+    preset OnPress = onPower;
+  }
+
+  $rect <500,40,700,80>
+  slot onUpdateView
+  {
+    if(TextEnd.Text.Bounds.x2 > 0)
+    {
+    TextEnd.Text.Bounds.x2 = TextEnd.Text.Bounds.x2  - 3;
+    TextEnd.Text.Bounds.x1 = TextEnd.Text.Bounds.x1  - 3;
+    InvalidateViewState();
+    //trace TextEnd.Text.Bounds.x2;
+    }else {
+      Timer.Enabled = false;
+      Owner.SwitchToDialog(new Cuptor::CuptorMain, null, null, null, null, null, null, null, null, null, false );
+    }
+
+  }
+
+  $rect <500,0,700,40>
+  object Core::Timer Timer
+  {
+    preset OnTrigger = onUpdateView;
+    preset Period = 1;
+    preset Enabled = true;
+  }
+
+  $rect <20,20,160,60>
+  object Cuptor::TextEnd TextEnd
+  {
+    preset Bounds = <116,18,386,178>;
+  }
+}
+
+$rect <640,140,840,180>
+$output false
+autoobject Effects::FadeInOutTransition FadeInOutTransition;
+
+$rect <640,440,840,480>
+$output false
+class TextEnd : Core::Group
+{
+  $rect <10,230,210,270>
+  inherited property Bounds = <0,0,270,160>;
+
+  $rect <10,310,210,350>
+  inherited method UpdateLayout()
+  {
+    // Always invoke the inherited method.
+    super( aSize );
+
+    /*
+
+      HINT:
+
+      This method exists for sophisticated layout calculation. Please note, that in 
+      most cases it is completely sufficient to use the views property 'Layout' to
+      determine how the view should behave when the component is resized.
+
+    */
+
+    /*
+
+      TO DO:
+
+      Put here the code to calculate new position and size of enclosed views. The
+      current (new) size of the component itself is passed in the parameter aSize.
+      For example:
+
+        SomeView.Bounds = rect( 10, 10, aSize.x - 20, aSize.y - 20 );
+
+    */
+  }
+
+  $rect <10,270,210,310>
+  inherited method UpdateViewState()
+  {
+    // Always invoke the inherited method.
+    super( aState );
+
+
+  }
+
+  $rect <20,20,160,60>
+  object Views::Text Text
+  {
+    preset Bounds = <283,0,1631,160>;
+    preset Alignment = Views::TextAlignment[AlignHorzLeft, AlignVertCenter];
+    preset String = "Preparation done!               Enjoy your meal!";
+    preset Font = Cuptor::FontXXL;
+  }
+}

@@ -1,0 +1,2479 @@
+<!DOCTYPE HTML PUBLIC>
+<HTML>
+<HEAD>
+  <META http-equiv="content-type" content="text/html; charset=UTF-8">
+  </META>
+  <TITLE>Embedded Wizard Code Generation Report</TITLE>
+  <STYLE>
+    *
+    {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+    html
+    {
+      background-color: #FFFFFF;
+    }
+    body
+    {
+      font-family: Segoe UI, Segoe, Helvetica Neue, Helvetica, Tahoma, Verdana, Arial, sans-serif;
+      margin-left: 0em;
+      margin-right: 0em;
+      -webkit-font-smoothing: antialiased;
+    }
+    div.CodeMetrics table, div.Files table
+    {
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2em;
+      margin-bottom: 2em;
+      border-spacing: 0;
+    }
+    div.CodeMetrics th, div.Files th
+    {
+      border: 1px solid #DDDDDD;
+      background-color: #F4F4F4;
+      padding: 0.5em;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      color: #666666;
+    }
+    div.CodeMetrics th:hover, div.Files th:hover
+    {
+      border: 1px solid #CCCCCC;
+      background-color: #E4E4E4;
+    }
+    div.CodeMetrics th:active, div.Files th:active
+    {
+      border: 1px solid #BBBBBB;
+      background-color: #C4C4C4;
+      color: #000000;
+    }
+    div.CodeMetrics td, div.Files td
+    {
+      border: 1px solid #DDDDDD;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      padding-top: 0.25em;
+      padding-bottom: 0.25em;
+    }
+    div.CodeMetrics tr:nth-child(odd), div.Files tr:nth-child(odd)
+    {
+      background-color: #F8F8F8;
+    }
+    div.CodeMetrics tr td:nth-child(3)
+    {
+      text-align: right;
+    }
+    div.CodeMetrics tr td:nth-child(2)
+    {
+      text-align: center;
+    }
+    div.Files tr td:nth-child(2)
+    {
+      text-align: center;
+    }
+    div.Files tr td:nth-child(3)
+    {
+      text-align: right;
+    }
+    div.CodeMetrics tr:last-child, div.Files tr:last-child
+    {
+      font-size: 100%;
+      font-weight: bold;
+    }
+    div.CodeMetrics tr:last-child td, div.Files tr:last-child td
+    {
+      padding: 0.5em;
+    }
+    div.Summary
+    {
+      margin-left:  2em;
+      margin-right: 2em;
+    }
+    div.Summary table
+    {
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2em;
+      margin-bottom: 2em;
+      border-spacing: 0;
+    }
+    div.Summary tr p:nth-child(1)
+    {
+      line-height: 180%;
+      margin-top: -0.3em;
+    }
+    div.Summary tr p:nth-child(2)
+    {
+      margin-top: -0.5em;
+      margin-bottom: 0.2em;
+    }
+    div.Summary td
+    {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      padding-top: 0.3em;
+      padding-bottom: 0.3em;
+    }
+    div.Summary td p:nth-child(1)
+    {
+      padding-top: 0.25em;
+      padding-bottom: 0.25em;
+    }
+    div.Summary td p:nth-child(2)
+    {
+      color: #999999;
+      padding-top: 0.25em;
+      font-size: 80%;
+      line-height: 145%;
+    }
+    div.Summary tr td:nth-child(1)
+    {
+    }
+    div.Summary tr td:nth-child(2)
+    {
+      text-align: right;
+    }
+    th
+    {
+      font-weight: normal;
+    }
+    div.Summary tr
+    {
+      border-top: 1px solid #DDDDDD;
+      border-bottom: 1px solid #DDDDDD;
+    }
+    div.Summary tr.HintRow p
+    {
+      padding-top: 1em;
+      padding-bottom: 1em;
+      line-height: 145%;
+      color: #FF0000;
+      font-size: 80%;
+    }
+    div.footer
+    {
+      height: 4em;
+      background-color: #FFFFFF;
+      margin-top: 1em;
+      margin-bottom: 2em;
+      padding-top: 0em;
+      text-align: center;
+    }
+    div.footer p.footer-1
+    {
+      margin-bottom: 0.1em;
+      font-size: 80%;
+      padding-top: 1em;
+      color: #999999;
+      line-height: 145%;
+    }
+    div.footer p.footer-2
+    {
+      margin-top: 0.1em;
+      margin-bottom: 0.1em;
+      font-size: 80%;
+      color: #999999;
+      line-height: 145%;
+    }
+    div.footer p.footer-3
+    {
+      margin-top: 0.1em;
+      padding-bottom: 2em;
+      font-size: 80%;
+      color: #999999;
+      line-height: 145%;
+    }
+    div.Caption
+    {
+      margin-top: 3em;
+      padding-bottom: 0em;
+      text-align: center;
+    }
+    div.Caption p:nth-child(1)
+    {
+      font-size: 180%;
+      color: #000000;
+    }
+    div.Caption p:nth-child(2)
+    {
+      margin-top: 0.5em;
+      font-size: 100%;
+      color: #999999;
+    }
+    a.LocalLink
+    {
+      text-decoration: none;
+      border-radius: 0.5em;
+      padding-top: 0.0em;
+      padding-bottom: 0.15em;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      margin-left: 2em;
+      border: 1px solid #E4E4E4;
+      background-color: #F8F8F8;
+      color: #888888;
+      font-size: 80%;
+    }
+    a.LocalLink:hover
+    {
+      border: 1px solid #CCCCCC;
+      background-color: #E4E4E4;
+      color: #444444;
+    }
+    a.LocalLink:active
+    {
+      border: 1px solid #BBBBBB;
+      background-color: #C4C4C4;
+      color: #000000;
+    }
+  </STYLE>
+</HEAD>
+<BODY>
+  <DIV CLASS=Caption>
+    <P>Code Generation Report</p>
+    <P>created by Embedded Wizard Studio</p>
+  </DIV>
+  <DIV ID=Summary CLASS=Summary>
+    <TABLE>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Version of Embedded Wizard Studio
+          </P>
+        </TD>
+        <TD>
+          10.00<BR>(build&nbsp;4461)
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Date of code generation
+          </P>
+        </TD>
+        <TD>
+          27&nbsp;Dec&nbsp;2020<BR>16:15:44
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Selected <a href="https://doc.embedded-wizard.de/profile-member">Profile</a>
+          </P>
+          <P>
+            The Profile contains configuration parameters affecting the code generation.
+          </P>
+        </TD>
+        <TD>
+          Profile
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            <a href="https://doc.embedded-wizard.de/platformpackage-attr">Platform Package</a> name
+          </P>
+          <P>
+            Identifies the Code Generator and Resource Converters used during the code generation.
+          </P>
+        </TD>
+        <TD>
+          STM.STM32.RGB565
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            Default <a href="https://doc.embedded-wizard.de/formatofbitmapresources-attr">conversion mode</a> of Bitmap Resources
+          </P>
+          <P>
+            Controls how pixel data of Bitmap Resources are processed if no other mode has been specified for the respective Bitmap Resource project member. See also the Bitmap Resource attribute <a href="https://doc.embedded-wizard.de/mode-attr">Mode</a>.
+          </P>
+        </TD>
+        <TD>
+          Compressed
+        </TD>
+      </TR>
+      <TR CLASS=InfoRow>
+        <TD>
+          <P>
+            <a href="https://doc.embedded-wizard.de/formatofstringconstants-attr">Conversion mode</a> of all String constants
+          </P>
+          <P>
+            Controls how contents of string Constant members and string literals are processed.
+          </P>
+        </TD>
+        <TD>
+          Compressed
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated total memory (flash) usage
+          </P>
+          <P>
+            It includes the implementation (the logic) of your applicatin, constant data and resources.
+          </P>
+        </TD>
+        <TD>
+          197&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=HintRow>
+        <TD colspan='2'>
+          <P>
+            IMPORTANT: All memory (flash) usage values are roughly estimated.  The size of the resutling binary depends on the target CPU architecture, your C/C++ compiler and the selected compiler optimization modes. Also the estimated size does not include the <a href='https://doc.embedded-wizard.de/platform-package#4'>Runtime Environment</a>, the <a href='https://doc.embedded-wizard.de/platform-package#3'>Graphics Engine</a>, the C standard library (libc), BSP, drivers, etc.. In order to get an exact size of the resulting binary please evaluate the linker's MAP file.
+          </P>
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/class-member">Classes</a> only <a class=LocalLink href='#Classes'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes the implementation (the logic) of the application.
+          </P>
+        </TD>
+        <TD>
+          122&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/constant-member">Constants</a> only <a class=LocalLink href='#Constants'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes all Constant members found in your project.
+          </P>
+        </TD>
+        <TD>
+          1&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for Strings only <a class=LocalLink href='#Strings'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes the converted contents of all string Constant members and string literals found in your project.
+          </P>
+        </TD>
+        <TD>
+          2&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/autoobject-member">Autoobjects</a> only <a class=LocalLink href='#Autoobjects'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes the initialization for all Autoobject members (global objects) found in your project.
+          </P>
+        </TD>
+        <TD>
+          1&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/bitmap-resource-member">Bitmap Resources</a> only <a class=LocalLink href='#BitmapResources'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes all Bitmap Resource members found in your project together with the converted pixel data.
+          </P>
+        </TD>
+        <TD>
+          10&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Estimated memory (flash) usage for <a href="https://doc.embedded-wizard.de/font-resource-member">Font Resources</a> only <a class=LocalLink href='#FontResources'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It includes all Font Resource members found in your project together with the converted glyph pixel data and metrics.
+          </P>
+        </TD>
+        <TD>
+          63&nbsp;KB
+        </TD>
+      </TR>
+      <TR CLASS=SizeRow>
+        <TD>
+          <P>
+            Total size of all generated files <a class=LocalLink href='#Files'>Show&nbsp;detailed&nbsp;list</a>
+          </P>
+          <P>
+            It is the sum of all code files (e.g. C++, C, H, JS) and resource files (e.g. PNG) created during the code generation process.
+          </P>
+        </TD>
+        <TD>
+          1275&nbsp;KB
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Classes CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Core::CursorEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          630
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::CursorGrabEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          326
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::CursorHit
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          272
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::DialogContext
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          172
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::DragEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          324
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Event
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          220
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Group
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          15036
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::KeyEvent
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1703
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::KeyPressHandler
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          650
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::LayoutContext
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          172
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::LayoutQuadContext
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          176
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::ModalContext
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          171
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Outline
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1194
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::QuadView
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          7631
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::RectView
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3707
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Resource
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          239
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Root
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          11635
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::SimpleTouchHandler
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          4673
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::SlideTouchHandler
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          11928
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Task
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          387
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::TaskQueue
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1196
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::Timer
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          760
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::VerticalList
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          7586
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Core::View
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1455
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::Application
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          372
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::CuptorBase
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1727
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::CuptorBaseClock
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          400
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::CuptorEditClock
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1564
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::CuptorMain
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          747
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::CuptorOff
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          338
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::GlobalsClass
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          173
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::ColorEffect
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          737
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::Effect
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          7700
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::EffectTimerClass
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          210
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::Fader
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          323
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::FaderTask
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1315
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::Int32Effect
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          285
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::ShowHideTransition
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          1264
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::TimingList
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          172
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::Transition
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          308
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::VisibilityFader
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          897
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Graphics::Canvas
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          3311
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources::Bitmap
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          510
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources::Font
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          744
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Frame
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          4049
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Image
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          6249
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Rectangle
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          857
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views::Text
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          11120
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::PushButton
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          5990
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::PushButtonConfig
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          588
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet::WidgetConfig
+        </TD>
+        <TD>
+          Class
+        </TD>
+        <TD>
+          196
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          124389
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Constants CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Unit Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Core
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          164
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          288
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          28
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Graphics
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          58
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          14
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          34
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          WidgetSet
+        </TD>
+        <TD>
+          Constants
+        </TD>
+        <TD>
+          56
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          642
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Strings CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Unit Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Core
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          916
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          40
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          224
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Graphics
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          396
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Resources
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          88
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Views
+        </TD>
+        <TD>
+          Strings
+        </TD>
+        <TD>
+          24
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          1688
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=BitmapResources CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Poze::meniu
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          1858
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Poze::minus
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          554
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Poze::play
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          825
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Poze::plus
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          909
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Poze::power
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          1558
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Poze::stop
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          661
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Poze::temp
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          1765
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Poze::timp
+        </TD>
+        <TD>
+          Bitmap Resource
+        </TD>
+        <TD>
+          1645
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          9775
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=FontResources CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::FontXXL
+        </TD>
+        <TD>
+          Font Resource
+        </TD>
+        <TD>
+          63581
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          63581
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Autoobjects CLASS=CodeMetrics>
+    <TABLE>
+      <TR>
+        <TH>
+          Project Member Name
+        </TH>
+        <TH>
+          Content Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::Globals
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          28
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonMeniu
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonMinus
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonPlay
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonPlus
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonPower
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonStop
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonTemp
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Cuptor::PushButtonTimp
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          108
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::EffectTimer
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          52
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          Effects::ShowHideCentered
+        </TD>
+        <TD>
+          Autoobject
+        </TD>
+        <TD>
+          28
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          972
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <DIV ID=Files CLASS=Files>
+    <TABLE>
+      <TR>
+        <TH>
+          Generated File Name
+        </TH>
+        <TH>
+          File Type
+        </TH>
+        <TH>
+          Size (Bytes)
+        </TH>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Core.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          334368
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Core.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          24179
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Cuptor.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          43281
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Cuptor.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3252
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Effects.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          70447
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Effects.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5951
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Graphics.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          24791
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Graphics.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2034
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Poze.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          2918
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Poze.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2141
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Resources.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          11625
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Resources.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1612
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Templates.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          1191
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Templates.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1550
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Views.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          69371
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\Views.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3743
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\WidgetSet.c
+        </TD>
+        <TD>
+          c
+        </TD>
+        <TD>
+          30717
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\WidgetSet.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1665
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreCursorEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7403
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreCursorGrabEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5243
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreCursorHit.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3246
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreDialogContext.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2684
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreDragEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3835
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2913
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreGroup.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          42486
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreKeyEvent.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6007
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreKeyPressHandler.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4494
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreLayoutContext.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2367
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreLayoutQuadContext.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2472
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreModalContext.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2221
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreOutline.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8380
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreQuadView.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7693
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreRectView.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6803
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreResource.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2256
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreRoot.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          35417
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreSimpleTouchHandler.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          14386
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreSlideTouchHandler.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          15736
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreTask.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8083
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreTaskQueue.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5646
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreTimer.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4506
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreVerticalList.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          20548
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CoreView.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          16502
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorApplication.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5834
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorCuptorBase.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6559
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorCuptorBaseClock.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5460
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorCuptorEditClock.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6726
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorCuptorMain.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5650
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorCuptorOff.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5284
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorGlobalsClass.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2190
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsColorEffect.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5392
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsEffect.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7989
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsEffectTimerClass.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2630
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsFader.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8778
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsFaderTask.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6311
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsInt32Effect.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5394
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsShowHideTransition.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7134
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsTimingList.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2146
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsTransition.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7645
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_EffectsVisibilityFader.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8199
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_GraphicsCanvas.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          13764
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_ResourcesBitmap.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4054
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_ResourcesFont.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          5592
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_ViewsFrame.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          10277
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_ViewsImage.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          10549
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_ViewsRectangle.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6935
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_ViewsText.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          13464
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_WidgetSetPushButton.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          13842
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_WidgetSetPushButtonConfig.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          8881
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_WidgetSetWidgetConfig.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          2269
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\ewfiles.cmake
+        </TD>
+        <TD>
+          cmake
+        </TD>
+        <TD>
+          214
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\ewfiles.inc
+        </TD>
+        <TD>
+          inc
+        </TD>
+        <TD>
+          193
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\ewfiles.lst
+        </TD>
+        <TD>
+          lst
+        </TD>
+        <TD>
+          457
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\ewlocale.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          1438
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_CuptorFontXXL.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          205983
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozemeniu.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          7206
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozeminus.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3058
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozeplay.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3916
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozeplus.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          4183
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozepower.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6250
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozestop.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          3395
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozetemp.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6908
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          C:\Users\Marius\Documents\Cuptor\cuptor\Embedded Wizard Projects\Cuptor\Profile\_Pozetimp.h
+        </TD>
+        <TD>
+          h
+        </TD>
+        <TD>
+          6521
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          TOTAL
+        </TD>
+        <TD>
+        </TD>
+        <TD>
+          1304833
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+    <div class='footer'>
+      <p class='footer-1'><a href='http://www.embedded-wizard.de' target='_blank'>Embedded Wizard</a> is a product of <a href='http://www.tara-systems.de' target='_blank'>TARA Systems GmbH</a></p>
+      <p class='footer-2'>Concept and implementation by <span class='autor'>Paul Banach</span> and <span class='autor'>Manfred Schweyer</span></p>
+      <p class='footer-3'><span>Copyright © 2019 TARA Systems GmbH</span></p>
+    </div>
+    <SCRIPT>
+      if ( !Array.from )
+        Array.from = function( arrayLike )
+        {
+          var temp_array = [];
+          var length     = arrayLike.length;
+          for ( var i = 0; i < length; i++ )
+            temp_array.push( arrayLike[i]);
+          return temp_array;
+        };
+      var ths = document.querySelectorAll( 'th' );
+      function hookTable( th )
+      {
+        th.addEventListener( 'click', function()
+        {
+          const tbody   = th.parentNode.parentNode;
+          var   content = Array.from( tbody.querySelectorAll( 'tr' ));
+          var   first   = content.shift();
+          var   last    = content.pop();
+          var   inx     = Array.from( th.parentNode.children ).indexOf( th );
+          var   asc     = !!this.asc;
+          content.sort( function( a, b )
+          {
+            a = a.children[ inx ].innerText || a.children[ inx ].textContent;
+            b = b.children[ inx ].innerText || b.children[ inx ].textContent;
+            if (( a !== '' ) && ( b !== '' ) && !isNaN( a ) && !isNaN( b ))
+              return asc? a - b : b - a;
+            else
+              return asc? a.toString().localeCompare( b ) :
+                          b.toString().localeCompare( a );
+          });
+          content.forEach( function( tr ){ tbody.appendChild( tr ); });
+          tbody.appendChild( last );
+          this.asc = !asc;
+        });
+      }
+      for ( var i = 0; i < ths.length; i++ )
+        hookTable( ths[i]);
+    </SCRIPT>
+  </BODY>

@@ -1,0 +1,70 @@
+/*******************************************************************************
+*
+* E M B E D D E D   W I Z A R D   P R O J E C T
+*
+*                                                Copyright (c) TARA Systems GmbH
+*                                    written by Paul Banach and Manfred Schweyer
+*
+********************************************************************************
+*
+* This file was generated automatically by Embedded Wizard Studio.
+*
+* Please do not make any modifications of this file! The modifications are lost
+* when the file is generated again by Embedded Wizard Studio!
+*
+* The template of this heading text can be found in the file 'head.ewt' in the
+* directory 'Platforms' of your Embedded Wizard installation directory. If you
+* wish to adapt this text, please copy the template file 'head.ewt' into your
+* project directory and edit the copy only. Please avoid any modifications of
+* the original template file!
+*
+* Version  : 10.00
+* Profile  : Profile
+* Platform : STM.STM32.RGB565
+*
+*******************************************************************************/
+
+/* Bitmap resource : 'Poze::plus' */
+EW_DEFINE_BITMAP_RES( Pozeplus )
+  EW_BITMAP_FRAMES( Pozeplus, Default, EW_DRIVER_VARIANT_RGBA8888, 50, 50, 0 )
+    EW_BITMAP_FRAME( 20, 4, 10, 42, 0x00000000, 0x00000000 )
+    EW_BITMAP_MAPPING( Pozeplus, Default )
+
+  EW_BITMAP_PIXEL( Pozeplus, Default )                          /* ratio 8.00 % */
+    0x1C080100, 0xC1A0B048, 0x2A130883, 0x9FF0A85C, 0xFF0E0043, 0x22C87441, 0xE188A6A2,
+    0x18D3EA22, 0x4B445BF1, 0x9C445111, 0xC9A19128, 0xAA532893, 0x25B2C95C, 0x731191C2,
+    0xB1168C44, 0x389BCDA6, 0x488B321D, 0x9FCBA463, 0x1D0A8340, 0xC3A6107A, 0xE58B110B,
+    0x2734CA5C, 0x7C1588B0, 0xB54A9D12, 0xFFA3552A, 0xD7E444C8, 0xAE576BB4, 0xB548C30E,
+    0x59ACB64A, 0x44071186, 0xADB5E524, 0x22A37FDB, 0xB74B380A, 0x0A88DD2E, 0xCB7B0622,
+    0x875EE997, 0x1E0AEC0A, 0x8362344C, 0x2AFAC788, 0x30CC89BE, 0x5790C7E1, 0x78D88E1A,
+    0x957FE5B1, 0xCC8835FF, 0xC9C273B9, 0xEE5F330E, 0xE7B3799B, 0x6341A7D3, 0x34B8BD1E,
+    0x559CD7EA, 0xD6ED668B, 0x83DBEC35, 0xED26D365, 0xBBEFB718, 0xDE870F0E, 0xEFF6D7CD,
+    0x137556E3, 0xB91BDDAF, 0x29C1C2F3, 0xFC1E672F, 0xCAA175B9, 0x7E3577A7, 0xE8E4BBBD,
+    0x6F6FB5C3, 0x44BBFDEE, 0xA3D324AC, 0xFD90FF5F, 0x35F0F6F9, 0xB4DF174B, 0xF1F57BB4,
+    0xAFDFBFF1, 0x9358FFBF, 0x406561F7, 0x68100844, 0x220543A0, 0x093FE078, 0x8360B832,
+    0x51154210, 0x4535F432, 0x295143A1, 0x1B83A1A8, 0x83E1D846, 0x60343A20, 0xE411E87E,
+    0x7911059E, 0xB6445161, 0x8B8BD444, 0xA2F43A30, 0x33FE318C, 0xDE358DA3, 0x4F4463A8,
+    0x854F1439, 0x50E8FD4C, 0x68D2388F, 0xEE489164, 0x4992A478, 0x43A2B8B2, 0x6248485D,
+    0x44443B7C, 0x664056CC, 0xD396E5A9, 0x4457A3ED, 0x42D56036, 0x6970D344, 0x4E6899E6,
+    0x2A444CF7, 0x9A49C444, 0xA729C670, 0x34449965, 0xE6789CCE, 0xE24DA7A9, 0x9EE5E444,
+    0xE68A0680, 0x246CFF9F, 0xD288A1E8, 0x8936A847, 0x6B28EA36, 0x48643919, 0x6A3CFD44,
+    0x5D4DA5E9, 0x110750E4, 0xA7E982FD, 0x51134A98, 0x10ADF145, 0x811C2DD1, 0x959A2AAA,
+    0x4398943A, 0x50E8043C, 0x116D1104, 0x2A352791, 0xFFAE90E5, 0x526BEAF0, 0x6C1AEEC0,
+    0x9AF2C3AF, 0x22703C99, 0xC2B11E1B, 0xB3ECCB36, 0x2D1B3ABF, 0x12F911B4, 0x990E5C51,
+    0x25069111, 0x3FEB240E, 0x40944401, 0x6B900C44, 0xA2E543AE, 0xE93FEE7B, 0xBB6EBBB2,
+    0x418446F0, 0x59C0CA44, 0xAAF343AF, 0xFBBBAFAB, 0xBBEFDBC6, 0xAE343B00, 0x97DC0243,
+    0x4DFEB7D2, 0x58C21FC9, 0xABCFF709, 0x70EC4268, 0x4C2B0BC2, 0x95FFC5F1, 0xAB783077,
+    0xC69DC9A5, 0xF1C67F20, 0x1C7E5C6C, 0x8E26C9F2, 0x28C9A70C, 0x99DD9CA3, 0xF21CB72C,
+    0x2CC666CB, 0x9734C6B3, 0x27CDDE4C, 0xCDA5BCE7, 0xB3E7773C, 0x6D074096, 0x1659D0DD,
+    0x4873B46D, 0xD2F4A903, 0xE15D35C7, 0x86FB50D3, 0xFE6997D7, 0x55604FF5, 0x5A90ECE3,
+    0x2702990E, 0xED775F5B, 0x50677EF5, 0x5958259A, 0x73F66C65, 0xD0EB7158, 0x8AF215BD,
+    0xCF6F43D4, 0x640F9F1C, 0x43A6B712, 0x779DB838, 0x10B9EE79, 0xF51126D1, 0x86A110E9,
+    0x444E03FE, 0x6DD9B097, 0x000101D0, 0x00000000
+
+  EW_BITMAP_CLUT_EMPTY( Pozeplus, Default )
+
+  EW_BITMAPS_TABLE( Pozeplus )
+    EW_BITMAP( Pozeplus, Default )
+EW_END_OF_BITMAP_RES( Pozeplus )
+
+/* Embedded Wizard */
