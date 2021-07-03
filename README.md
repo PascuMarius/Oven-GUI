@@ -10,7 +10,7 @@
 ## Menu select Interface
 ![Menu](https://i.imgur.com/HqhecNU.jpg?1)
 
-## onHeating Interface
+## Heating Interface
 ![Heating](https://i.imgur.com/ZhYQkLt.jpg?1)
 
 ## Cooking Interface
